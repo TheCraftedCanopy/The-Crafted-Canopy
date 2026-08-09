@@ -1,0 +1,2301 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>সকল পণ্য | The Crafted Canopy</title>
+  
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      emailjs.init("cdqwAxqGRFIm73pgW");
+    })();
+  </script>
+
+  <style>
+    :root {
+      --bg-color: #FBF9F5;
+      --card-bg: #FFFFFF;
+      --primary-brown: #2F5D50;
+      --accent-gold: #A97C50;
+      --sage-green: #2F5D50;
+      --soft-beige: #E6EFE9;
+      --text-dark: #1C1A17;
+      --text-muted: #6F6A60;
+      --border-color: #E6E1D6;
+      --whatsapp-color: #25D366;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Hind Siliguri', 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    .brand-font { font-family: 'Fraunces', serif; }
+
+    header {
+      background-color: rgba(251, 248, 243, 0.95);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 20px;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container img { max-height: 55px; object-fit: contain; }
+
+    .header-cart-btn {
+      position: relative;
+      background: var(--soft-beige);
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--primary-brown);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cart-badge {
+      background: var(--primary-brown);
+      color: #fff;
+      font-size: 12px;
+      border-radius: 50%;
+      padding: 2px 7px;
+    }
+
+    .header-right { display: flex; align-items: center; gap: 8px; }
+
+    .wishlist-icon-btn {
+      position: relative;
+      background: none;
+      border: none;
+      font-size: 19px;
+      color: var(--primary-brown);
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .wishlist-icon-btn:hover { background: var(--soft-beige); }
+
+    .wishlist-icon-badge {
+      position: absolute;
+      top: 2px; right: 2px;
+      background: var(--accent-gold);
+      color: #fff;
+      font-size: 9.5px;
+      font-weight: 700;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .search-row {
+      padding: 10px 20px 12px;
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 73px;
+      z-index: 99;
+    }
+    .search-bar-box {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .search-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--soft-beige);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 11px 16px;
+    }
+    .search-input-wrap:focus-within { border-color: var(--accent-gold); box-shadow: 0 0 0 3px rgba(169,124,80,0.15); }
+    .search-input-wrap i.fa-magnifying-glass { color: var(--text-muted); font-size: 14px; }
+    .search-input-wrap input {
+      border: none; background: transparent; outline: none;
+      font-family: 'Hind Siliguri', sans-serif; font-size: 14px; width: 100%; color: var(--text-dark);
+    }
+    .search-input-wrap input::placeholder { color: var(--text-muted); }
+    .search-clear-btn {
+      background: none; border: none; color: var(--text-muted); cursor: pointer;
+      font-size: 13px; display: none; padding: 4px;
+    }
+    .search-clear-btn.show { display: block; }
+
+    .popular-search-chips {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .popular-search-chips .label { font-size: 12px; color: var(--text-muted); flex-shrink: 0; }
+    .popular-chip {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--primary-brown);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 13px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .popular-chip:hover { border-color: var(--accent-gold); background: var(--soft-beige); }
+
+    .cart-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--primary-brown);
+      color: #fff;
+      padding: 13px 22px;
+      border-radius: 30px;
+      font-size: 13.5px;
+      font-weight: 600;
+      z-index: 5000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      max-width: 90vw;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+    .cart-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .cart-toast i { color: #A8D5BA; }
+
+    .trust-badges-strip {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      background: var(--soft-beige);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 20px 24px;
+      margin: 40px 0 0;
+    }
+    .trust-badge-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--primary-brown);
+      font-weight: 600;
+    }
+    .trust-badge-item i { font-size: 18px; color: var(--accent-gold); }
+
+    .search-results-panel {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0; right: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(60,42,33,0.15);
+      max-height: 60vh;
+      overflow-y: auto;
+      display: none;
+      z-index: 150;
+    }
+    .search-results-panel.show { display: block; }
+    .search-result-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 14px;
+      text-decoration: none;
+      color: inherit;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover { background: var(--soft-beige); }
+    .search-result-item img { width: 46px; height: 46px; border-radius: 8px; object-fit: cover; flex-shrink: 0; background: var(--soft-beige); }
+    .search-result-item .sname { font-size: 13.5px; font-weight: 600; color: var(--text-dark); }
+    .search-result-item .sprice { font-size: 12.5px; color: var(--primary-brown); font-weight: 700; margin-top: 2px; }
+    .search-no-results { padding: 20px; text-align: center; color: var(--text-muted); font-size: 13.5px; }
+
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+    .section-title {
+      text-align: center;
+      color: var(--primary-brown);
+      font-size: 28px;
+      margin-bottom: 25px;
+      font-weight: 700;
+    }
+
+    .products-section { padding: 30px 0 20px; }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(60, 42, 33, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(60, 42, 33, 0.1);
+    }
+
+    .product-card.highlighted {
+      outline: 3px solid var(--accent-gold);
+      outline-offset: 3px;
+      animation: highlightPulse 1.6s ease-in-out 2;
+    }
+
+    @keyframes highlightPulse {
+      0%, 100% { box-shadow: 0 10px 25px rgba(60, 42, 33, 0.05); }
+      50% { box-shadow: 0 0 0 8px rgba(169, 124, 80, 0.25); }
+    }
+
+    .product-image-box {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 15px;
+      height: 230px;
+      background: #f7f7f7;
+    }
+
+    .product-image-box img { width: 100%; height: 100%; object-fit: cover; display: block; cursor: zoom-in; }
+
+    .logo-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .header-left { display: flex; align-items: center; gap: 14px; }
+
+    .hamburger-btn {
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: var(--primary-brown);
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+    }
+
+    .category-sidebar {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 260px;
+      height: 100%;
+      background: var(--bg-color);
+      z-index: 4000;
+      box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+      transition: left 0.3s ease;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .category-sidebar.active { left: 0; }
+
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .sidebar-header h3 {
+      color: var(--primary-brown);
+      font-size: 18px;
+    }
+
+    .sidebar-close-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .category-item {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 14px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+      font-family: inherit;
+      cursor: pointer;
+      margin-bottom: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .category-item:hover { background: var(--soft-beige); }
+
+    .category-item.active {
+      background: var(--primary-brown);
+      color: #fff;
+    }
+
+    .subcategory-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 4px 0 14px 4px;
+    }
+    .subcategory-chip {
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .subcategory-chip:hover { border-color: var(--accent-gold); }
+    .subcategory-chip.active { background: var(--accent-gold); border-color: var(--accent-gold); color: #fff; }
+
+    /* ===== Filter & Sort bar ===== */
+    .filter-sort-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .result-count { font-size: 13px; color: var(--text-muted); }
+
+    .filter-sort-controls { display: flex; align-items: center; gap: 8px; }
+
+    .sort-select {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 9px 14px;
+      font-size: 13px;
+      font-family: 'Hind Siliguri', sans-serif;
+      color: var(--text-dark);
+      cursor: pointer;
+    }
+
+    .filter-open-btn {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--primary-brown);
+      cursor: pointer;
+      font-family: 'Hind Siliguri', sans-serif;
+    }
+    .filter-open-btn:hover { border-color: var(--accent-gold); }
+    .filter-count-dot {
+      background: var(--accent-gold);
+      color: #fff;
+      font-size: 10.5px;
+      font-weight: 700;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .active-filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .active-filter-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--soft-beige);
+      border: 1px solid var(--border-color);
+      color: var(--primary-brown);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 10px 5px 12px;
+      border-radius: 16px;
+    }
+    .active-filter-chip button {
+      background: none; border: none; color: var(--primary-brown); cursor: pointer; font-size: 12px; padding: 2px;
+    }
+    .clear-all-filters {
+      background: none; border: none; color: var(--text-muted); text-decoration: underline;
+      font-size: 12px; cursor: pointer; font-family: inherit;
+    }
+
+    /* ===== Filter drawer (right side) ===== */
+    .filter-drawer {
+      position: fixed;
+      top: 0; right: -320px;
+      width: 300px; height: 100%;
+      background: var(--bg-color);
+      z-index: 4000;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+      transition: right 0.3s ease;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .filter-drawer.active { right: 0; }
+
+    .filter-drawer-section { margin-bottom: 24px; }
+    .filter-drawer-section h4 {
+      font-size: 13.5px; color: var(--primary-brown); margin-bottom: 12px; font-weight: 700;
+    }
+    .price-range-inputs { display: flex; align-items: center; gap: 8px; }
+    .price-range-inputs input {
+      width: 100%; padding: 9px 10px; border: 1px solid var(--border-color);
+      border-radius: 10px; font-size: 13px; font-family: inherit;
+    }
+    .filter-checkbox-row {
+      display: flex; align-items: center; gap: 9px; padding: 7px 0; font-size: 13.5px; cursor: pointer;
+    }
+    .filter-checkbox-row input { width: 16px; height: 16px; accent-color: var(--accent-gold); cursor: pointer; }
+
+    .filter-drawer-footer {
+      position: sticky; bottom: 0; background: var(--bg-color);
+      padding-top: 14px; display: flex; gap: 10px; border-top: 1px solid var(--border-color);
+    }
+    .filter-drawer-footer button {
+      flex: 1; padding: 12px; border-radius: 22px; font-size: 13.5px; font-weight: 600;
+      cursor: pointer; font-family: inherit; border: none;
+    }
+    .btn-apply-filters { background: var(--primary-brown); color: #fff; }
+    .btn-clear-filters { background: var(--soft-beige); color: var(--primary-brown); border: 1px solid var(--border-color) !important; }
+
+    .sidebar-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 3999;
+      display: none;
+    }
+
+    .sidebar-overlay.active { display: block; }
+
+    .image-lightbox-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 3000;
+      padding: 20px;
+      cursor: zoom-out;
+    }
+
+    .image-lightbox-overlay.active { display: flex; }
+
+    .image-lightbox-overlay img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      cursor: default;
+    }
+
+    .image-lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      color: #fff;
+      font-size: 28px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .discount-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #C0564F;
+      color: #FFF;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 13px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 2;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      color: #FFF;
+      padding: 4px 12px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 12.5px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      z-index: 2;
+      font-family: 'Inter', sans-serif;
+    }
+    .product-badge.trending { background: var(--accent-gold); }
+    .product-badge.bestseller { background: var(--primary-brown); }
+    .product-badge.new { background: #4A7A6D; }
+    .product-badge.stockout { background: #8B857A; }
+
+    .wishlist-heart-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.92);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-brown);
+      font-size: 14px;
+      cursor: pointer;
+      z-index: 2;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+    .wishlist-heart-btn:hover { transform: scale(1.08); }
+    .wishlist-heart-btn.saved { background: var(--accent-gold); color: #fff; }
+
+    .stock-status-note {
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 4px;
+      font-family: 'Inter', sans-serif;
+    }
+    .stock-status-note.ok { color: var(--primary-brown); }
+    .stock-status-note.out { color: #C0564F; }
+
+    .product-card-title {
+      font-size: 18px;
+      color: var(--primary-brown);
+      font-weight: 700;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .product-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+
+    .price-box {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .current-price { font-size: 22px; font-weight: 700; color: var(--primary-brown); }
+    .original-price { font-size: 15px; color: var(--text-muted); text-decoration: line-through; }
+
+    .btn-action-group {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-add-cart {
+      flex: 1;
+      background: var(--soft-beige);
+      color: var(--primary-brown);
+      border: 1px solid var(--accent-gold);
+      padding: 10px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .btn-add-cart:hover { background: var(--accent-gold); color: #fff; }
+
+    .btn-buy-now {
+      flex: 1;
+      background: var(--primary-brown);
+      color: #fff;
+      border: none;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .btn-buy-now:hover { background: #254A40; }
+
+    .delivery-info-banner {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      font-size: 14px;
+      color: var(--text-muted);
+      border-top: 1px dashed var(--border-color);
+      border-bottom: 1px dashed var(--border-color);
+      padding: 12px 0;
+      margin-top: 30px;
+      text-align: center;
+      flex-wrap: wrap;
+    }
+
+    .delivery-info-banner i { color: var(--accent-gold); margin-right: 6px; }
+
+    .cart-summary-card {
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      border-radius: 15px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .cart-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    .cart-item-row:last-child { border-bottom: none; }
+
+    .cart-item-info { display: flex; align-items: center; gap: 12px; }
+    .cart-item-info img { width: 45px; height: 45px; border-radius: 8px; object-fit: cover; }
+    .cart-item-title { font-size: 14px; font-weight: 600; color: var(--primary-brown); }
+    .cart-item-price { font-size: 13px; color: var(--text-muted); }
+
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-btn {
+      background: var(--soft-beige);
+      border: 1px solid var(--border-color);
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-remove {
+      color: #d9534f;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    .features-section { padding: 30px 0; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+
+    .feature-card i { font-size: 28px; color: var(--sage-green); margin-bottom: 10px; }
+    .feature-card h4 { color: var(--primary-brown); margin-bottom: 5px; }
+
+    .order-section { padding: 30px 0 60px; }
+
+    .form-wrapper {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 35px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .form-header { text-align: center; margin-bottom: 30px; }
+    .form-header h2 { font-size: 26px; color: var(--primary-brown); margin-bottom: 8px; }
+
+    .form-group { margin-bottom: 20px; }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+      background: #FAF7F2;
+      font-family: inherit;
+    }
+
+    .form-control:focus { border-color: var(--accent-gold); background: #FFF; }
+    select.form-control { cursor: pointer; }
+
+    .radio-group { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+    .radio-card {
+      border: 1px solid var(--border-color);
+      padding: 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+      background: #FAF7F2;
+    }
+
+    .radio-card input { accent-color: var(--primary-brown); }
+    .radio-card.active { border-color: var(--primary-brown); background: var(--soft-beige); }
+
+    .order-summary {
+      background: var(--soft-beige);
+      padding: 20px;
+      border-radius: 12px;
+      margin: 25px 0;
+    }
+
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 15px; }
+
+    .summary-row.total {
+      border-top: 1px solid var(--border-color);
+      padding-top: 10px;
+      margin-bottom: 0;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--primary-brown);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--primary-brown);
+      color: white;
+      border: none;
+      padding: 16px;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-submit:hover { background: #254A40; }
+    .btn-submit:disabled { background: var(--text-muted); cursor: not-allowed; }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      background-color: var(--whatsapp-color);
+      color: #FFF;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 24px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      text-decoration: none;
+      transition: transform 0.3s;
+    }
+
+    .whatsapp-float:hover { transform: scale(1.05); }
+    .whatsapp-float span { font-size: 14px; font-weight: 600; }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .poster-container {
+      background: #FFF;
+      border-radius: 20px;
+      padding: 30px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    #poster-content {
+      background: #FDFBF7;
+      border: 2px dashed var(--accent-gold);
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .poster-header { border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 15px; }
+    .poster-header h3 { font-family: 'Fraunces', serif; color: var(--primary-brown); font-size: 20px; }
+
+    .poster-status {
+      display: inline-block;
+      background: var(--sage-green);
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    .poster-details { text-align: left; font-size: 14px; margin-bottom: 15px; }
+    .poster-details div { display: flex; justify-content: space-between; margin-bottom: 8px; }
+    .poster-details span.label { color: var(--text-muted); }
+    .poster-details span.value { font-weight: 600; color: var(--text-dark); }
+
+    .poster-items-list {
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    .poster-item-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 4px 0;
+    }
+
+    .poster-actions { display: flex; gap: 12px; margin-top: 20px; }
+
+    .btn-action {
+      flex: 1; padding: 12px; border-radius: 10px; border: none; font-weight: 600; cursor: pointer; font-size: 15px; display: flex; align-items: center; justify-content: center; gap: 6px;
+    }
+
+    .btn-ok { background: var(--soft-beige); color: var(--primary-brown); }
+    .btn-download { background: var(--primary-brown); color: #fff; }
+
+    @media (max-width: 768px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .radio-group { grid-template-columns: 1fr; }
+      .whatsapp-float span { display: none; }
+      .whatsapp-float { padding: 15px; border-radius: 50%; }
+      .filter-drawer { width: 85vw; right: -85vw; }
+      .filter-sort-bar { gap: 8px; }
+      .sort-select { flex: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <button type="button" class="hamburger-btn" onclick="openSidebar()" aria-label="ক্যাটাগরি মেনু">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="logo-container">
+        <a href="index.html" class="logo-btn" aria-label="হোমপেজে যান">
+          <img src="https://i.supaimg.com/90fa2840-ff7d-4425-a3a9-702953a58f4b/23147273-2e74-4eb4-af7c-a97489cf6d05.jpg" alt="The Crafted Canopy Logo" />
+        </a>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="wishlist-icon-btn" onclick="scrollToWishlistOrNotify()" aria-label="উইশলিস্ট">
+        <i class="fa-regular fa-heart"></i>
+        <span class="wishlist-icon-badge" id="wishlistBadgeCount" style="display:none;">0</span>
+      </button>
+      <button class="header-cart-btn" onclick="scrollToOrderForm()">
+        <i class="fa-solid fa-basket-shopping"></i> কার্ট
+        <span class="cart-badge" id="cartBadgeCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="search-row">
+    <div class="search-bar-box">
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="নাম, ক্যাটাগরি বা বিবরণ দিয়ে পণ্য খুঁজুন…" autocomplete="off" />
+        <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="popular-search-chips" id="popularSearchChips"></div>
+      <div class="search-results-panel" id="searchResultsPanel"></div>
+    </div>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeAllPanels()"></div>
+  <div class="category-sidebar" id="categorySidebar">
+    <div class="sidebar-header">
+      <h3 class="brand-font">ক্যাটাগরি</h3>
+      <button type="button" class="sidebar-close-btn" onclick="closeSidebar()" aria-label="বন্ধ করুন">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <button type="button" class="category-item active" data-category="all" onclick="selectCategory('all')">সকল পণ্য</button>
+    <button type="button" class="category-item" data-category="gypsum" onclick="selectCategory('gypsum')">জিপসাম (Gypsum)</button>
+    <button type="button" class="category-item" data-category="resin" onclick="selectCategory('resin')">রেজিন (Resin)</button>
+    <button type="button" class="category-item" data-category="candle" onclick="selectCategory('candle')">ক্যান্ডেল (Candle)</button>
+    <div class="subcategory-chips" id="subcategoryChips"></div>
+  </div>
+
+  <div class="filter-drawer" id="filterDrawer">
+    <div class="sidebar-header">
+      <h3 class="brand-font">ফিল্টার</h3>
+      <button type="button" class="sidebar-close-btn" onclick="closeFilterDrawer()" aria-label="বন্ধ করুন">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="filter-drawer-section">
+      <h4>মূল্য পরিসীমা (৳)</h4>
+      <div class="price-range-inputs">
+        <input type="number" id="filterPriceMin" placeholder="সর্বনিম্ন" min="0" />
+        <span>—</span>
+        <input type="number" id="filterPriceMax" placeholder="সর্বোচ্চ" min="0" />
+      </div>
+    </div>
+
+    <div class="filter-drawer-section">
+      <h4>স্টক</h4>
+      <label class="filter-checkbox-row">
+        <input type="checkbox" id="filterInStockOnly" />
+        শুধু স্টকে থাকা পণ্য দেখান
+      </label>
+    </div>
+
+    <div class="filter-drawer-section">
+      <h4>বিশেষ ট্যাগ</h4>
+      <label class="filter-checkbox-row"><input type="checkbox" id="filterFeatured" /> ফিচার্ড</label>
+      <label class="filter-checkbox-row"><input type="checkbox" id="filterBestSeller" /> বেস্ট সেলার</label>
+      <label class="filter-checkbox-row"><input type="checkbox" id="filterTrending" /> ট্রেন্ডিং</label>
+      <label class="filter-checkbox-row"><input type="checkbox" id="filterNewArrival" /> নতুন এসেছে</label>
+      <label class="filter-checkbox-row"><input type="checkbox" id="filterOnSale" /> ছাড়ে থাকা পণ্য</label>
+    </div>
+
+    <div class="filter-drawer-footer">
+      <button type="button" class="btn-clear-filters" onclick="clearAllFilters()">সব মুছুন</button>
+      <button type="button" class="btn-apply-filters" onclick="applyFiltersFromDrawer()">প্রয়োগ করুন</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="products-section">
+      <h2 class="section-title brand-font">সকল পণ্য</h2>
+
+      <div class="filter-sort-bar">
+        <span class="result-count" id="resultCount"></span>
+        <div class="filter-sort-controls">
+          <select class="sort-select" id="sortSelect" onchange="setSortOption(this.value)">
+            <option value="default">সাজান</option>
+            <option value="newest">নতুন আগে</option>
+            <option value="oldest">পুরনো আগে</option>
+            <option value="price-asc">দাম: কম থেকে বেশি</option>
+            <option value="price-desc">দাম: বেশি থেকে কম</option>
+            <option value="name-asc">নাম (A-Z)</option>
+          </select>
+          <button type="button" class="filter-open-btn" onclick="openFilterDrawer()">
+            <i class="fa-solid fa-sliders"></i> ফিল্টার
+            <span class="filter-count-dot" id="filterCountDot" style="display:none;">0</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="active-filter-chips" id="activeFilterChips"></div>
+
+      <div class="product-grid" id="productGrid">
+        <p style="text-align:center; color: var(--text-muted); grid-column: 1/-1;">পণ্য লোড হচ্ছে…</p>
+      </div>
+
+      <div class="delivery-info-banner">
+        <span><i class="fa-solid fa-truck-fast"></i> ময়মনসিংহ সদরে Delivery: ৳৮০</span>
+        <span><i class="fa-solid fa-location-dot"></i> সদরের বাইরে: ৳১৩০</span>
+      </div>
+    </section>
+
+    <section class="order-section" id="order-form-section">
+      <div class="form-wrapper">
+        <div class="form-header">
+          <h2>অর্ডার ফর্ম পূরণ করুন</h2>
+          <p style="color: var(--text-muted); font-size: 14px;">আপনার কার্টের পণ্যগুলো অর্ডার করতে নিচের ফর্ম পূরণ করুন</p>
+        </div>
+
+        <form id="checkoutForm">
+          
+          <div class="form-group">
+            <label>আপনার কার্ট (Selected Items)</label>
+            <div class="cart-summary-card" id="cartItemsList">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fullName">আপনার নাম *</label>
+            <input type="text" id="fullName" name="fullName" class="form-control" placeholder="যেমন: রহিমা আক্তার" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">মোবাইল নম্বর *</label>
+            <input type="tel" id="phone" name="phone" class="form-control" placeholder="যেমন: 017XXXXXXXX" pattern="[0-9]{11}" required />
+          </div>
+
+          <div class="form-group">
+            <label for="division">বিভাগ (Division) *</label>
+            <select id="division" name="division" class="form-control" onchange="loadDistricts()" required>
+              <option value="" disabled selected>বিভাগ নির্বাচন করুন</option>
+              <option value="Dhaka">Dhaka (ঢাকা)</option>
+              <option value="Chattogram">Chattogram (চট্টগ্রাম)</option>
+              <option value="Rajshahi">Rajshahi (রাজশাহী)</option>
+              <option value="Khulna">Khulna (খুলনা)</option>
+              <option value="Barishal">Barishal (বরিশাল)</option>
+              <option value="Sylhet">Sylhet (সিলেট)</option>
+              <option value="Rangpur">Rangpur (রংপুর)</option>
+              <option value="Mymensingh">Mymensingh (ময়মনসিংহ)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="district">জেলা (District) *</label>
+            <select id="district" name="district" class="form-control" onchange="loadUpazilas()" required disabled>
+              <option value="" disabled selected>প্রথমে বিভাগ নির্বাচন করুন</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="upazila">উপজেলা / থানা (Sub-district) *</label>
+            <select id="upazila" name="upazila" class="form-control" required disabled>
+              <option value="" disabled selected>প্রথমে জেলা নির্বাচন করুন</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="address">বিস্তারিত ঠিকানা (House / Road / Area) *</label>
+            <textarea id="address" name="address" class="form-control" rows="2" placeholder="বাসা নম্বর, রোড নম্বর বা নির্দিষ্ট এলাকা লিখুন" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>ডেলিভারি এরিয়া নির্বাচন করুন *</label>
+            <div class="radio-group">
+              <label class="radio-card active" id="labelDhaka">
+                <input type="radio" name="delivery" value="80" checked onclick="updateDelivery(80, 'labelDhaka')" />
+                <div>
+                  <strong>ময়মনসিংহ সদরের ভেতরে</strong>
+                  <div style="font-size: 13px; color: var(--text-muted);">চার্জ: ৳৮০</div>
+                </div>
+              </label>
+
+              <label class="radio-card" id="labelOutside">
+                <input type="radio" name="delivery" value="130" onclick="updateDelivery(130, 'labelOutside')" />
+                <div>
+                  <strong>ময়মনসিংহ সদরের বাইরে</strong>
+                  <div style="font-size: 13px; color: var(--text-muted);">চার্জ: ৳১৩০</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="order-summary">
+            <div class="summary-row">
+              <span>পণ্যর সাবটোটাল:</span>
+              <span id="subtotalText">৳১০০</span>
+            </div>
+            <div class="summary-row">
+              <span>ডেলিভারি চার্জ:</span>
+              <span id="deliveryText">৳৮০</span>
+            </div>
+            <div class="summary-row total">
+              <span>সর্বমোট:</span>
+              <span id="totalText">৳১৮০</span>
+            </div>
+          </div>
+
+          <button type="submit" id="submitBtn" class="btn-submit">
+            অর্ডার নিশ্চিত করুন (ক্যাশ অন ডেলিভারি)
+          </button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <div class="trust-badges-strip">
+    <span class="trust-badge-item"><i class="fa-solid fa-truck-fast"></i> সারা বাংলাদেশে ডেলিভারি</span>
+    <span class="trust-badge-item"><i class="fa-solid fa-money-bill-wave"></i> ক্যাশ অন ডেলিভারি</span>
+    <span class="trust-badge-item"><i class="fa-solid fa-hand-holding-heart"></i> ১০০% হ্যান্ডমেড কোয়ালিটি</span>
+  </div>
+
+  <a href="#" id="whatsappFloat" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span>সহায়তার জন্য হোয়াটসঅ্যাপ করুন</span>
+  </a>
+
+  <!-- Order Confirmation Poster Modal -->
+  <div class="image-lightbox-overlay" id="imageLightbox" onclick="closeLightbox(event)">
+    <button type="button" class="image-lightbox-close" onclick="closeLightbox(event)" aria-label="বন্ধ করুন">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <img id="lightboxImg" src="" alt="Enlarged product image" />
+  </div>
+
+  <div class="modal-overlay" id="posterModal">
+    <div class="poster-container">
+      <div id="poster-content">
+        <div class="poster-header">
+          <h3 class="brand-font">The Crafted Canopy</h3>
+          <p style="font-size: 12px; color: var(--text-muted);">Resin • Gypsum • Candles</p>
+          <span class="poster-status"><i class="fa-solid fa-circle-check"></i> অর্ডার সফল হয়েছে</span>
+        </div>
+
+        <div style="margin-bottom: 12px; font-size: 13px; color: var(--text-muted);" id="posterDate"></div>
+
+        <div class="poster-details">
+          <div>
+            <span class="label">অর্ডার আইডি:</span>
+            <span class="value" id="resOrderId">#TCC-1024</span>
+          </div>
+          <div>
+            <span class="label">কাস্টমারের নাম:</span>
+            <span class="value" id="resName"></span>
+          </div>
+          <div>
+            <span class="label">মোবাইল:</span>
+            <span class="value" id="resPhone"></span>
+          </div>
+          <div>
+            <span class="label">ঠিকানা:</span>
+            <span class="value" id="resAddress" style="max-width: 200px; text-align: right;"></span>
+          </div>
+
+          <div style="margin-top: 10px; font-weight: bold; color: var(--primary-brown);">অর্ডারকৃত পণ্যসমূহ:</div>
+          <div class="poster-items-list" id="posterItemsList">
+            <!-- Dynamically injected -->
+          </div>
+
+          <div>
+            <span class="label">ডেলিভারি চার্জ:</span>
+            <span class="value" id="resDelivery">৳৮০</span>
+          </div>
+          <div style="border-top: 1px dashed #ccc; padding-top: 8px; font-weight: 700; margin-top: 8px;">
+            <span class="label" style="color: var(--primary-brown);">মোট প্রদেয়:</span>
+            <span class="value" id="resTotal" style="color: var(--primary-brown); font-size: 16px;">৳১৮০</span>
+          </div>
+        </div>
+
+        <p style="font-size: 12px; color: var(--sage-green); font-weight: 600;">
+          আমাদের থেকে কেনাকাটা করার জন্য ধন্যবাদ!
+        </p>
+      </div>
+
+      <div class="poster-actions">
+        <button class="btn-action btn-ok" onclick="closePosterModal()">
+          <i class="fa-solid fa-check"></i> OK
+        </button>
+        <button class="btn-action btn-download" onclick="downloadPoster()">
+          <i class="fa-solid fa-download"></i> Download
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initial Shopping Cart State
+    const CART_KEY = 'craftedCanopyCart';
+    let cart = [];
+    try {
+      cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+    } catch (e) {
+      cart = [];
+    }
+    let PRODUCTS = [];
+    let currentCategory = 'all';
+
+    let selectedDeliveryCharge = 80;
+
+    // Fallback values (used only if site-settings.json fails to load) — must match the static HTML defaults
+    let SITE_SETTINGS = {
+      whatsappNumber: '01410355233',
+      whatsappInternational: '8801410355233',
+      whatsappMessage: 'Hello The Crafted Canopy, I need some help with my order/product.',
+      shippingInsideLabel: 'ময়মনসিংহ সদরের ভেতরে',
+      shippingInsideCharge: 80,
+      shippingOutsideLabel: 'ময়মনসিংহ সদরের বাইরে',
+      shippingOutsideCharge: 130
+    };
+
+    // Load site-wide settings (WhatsApp number, shipping rates) from the CMS-managed site-settings.json
+    async function loadSiteSettings() {
+      try {
+        const res = await fetch('site-settings.json', { cache: 'no-store' });
+        const data = await res.json();
+        SITE_SETTINGS = Object.assign({}, SITE_SETTINGS, data);
+      } catch (e) {
+        // Keep fallback defaults above
+      }
+
+      // WhatsApp float button
+      const waMsg = encodeURIComponent(SITE_SETTINGS.whatsappMessage || '');
+      const waLink = document.getElementById('whatsappFloat');
+      if (waLink) waLink.href = `https://wa.me/${SITE_SETTINGS.whatsappInternational}?text=${waMsg}`;
+
+      // Delivery radio card labels + charges — only overwrite the correct baked-in HTML defaults
+      // if the CMS value is actually present and valid. This prevents a blank/empty CMS field
+      // from ever wiping out the label, and a bad number (e.g. a typo) from ever showing an
+      // obviously-wrong charge.
+      const insideCard = document.getElementById('labelDhaka');
+      const outsideCard = document.getElementById('labelOutside');
+
+      const insideLabelOk = typeof SITE_SETTINGS.shippingInsideLabel === 'string' && SITE_SETTINGS.shippingInsideLabel.trim().length > 0;
+      const insideChargeOk = SITE_SETTINGS.shippingInsideCharge !== null && SITE_SETTINGS.shippingInsideCharge !== '' && !isNaN(Number(SITE_SETTINGS.shippingInsideCharge)) && Number(SITE_SETTINGS.shippingInsideCharge) > 0 && Number(SITE_SETTINGS.shippingInsideCharge) < 1000;
+      const outsideLabelOk = typeof SITE_SETTINGS.shippingOutsideLabel === 'string' && SITE_SETTINGS.shippingOutsideLabel.trim().length > 0;
+      const outsideChargeOk = SITE_SETTINGS.shippingOutsideCharge !== null && SITE_SETTINGS.shippingOutsideCharge !== '' && !isNaN(Number(SITE_SETTINGS.shippingOutsideCharge)) && Number(SITE_SETTINGS.shippingOutsideCharge) > 0 && Number(SITE_SETTINGS.shippingOutsideCharge) < 1000;
+
+      if (insideCard) {
+        if (insideLabelOk) insideCard.querySelector('strong').textContent = SITE_SETTINGS.shippingInsideLabel;
+        if (insideChargeOk) {
+          insideCard.querySelector('div div').textContent = `চার্জ: ৳${toBnDigits(SITE_SETTINGS.shippingInsideCharge)}`;
+          insideCard.querySelector('input').value = SITE_SETTINGS.shippingInsideCharge;
+          insideCard.querySelector('input').setAttribute('onclick', `updateDelivery(${SITE_SETTINGS.shippingInsideCharge}, 'labelDhaka')`);
+        }
+      }
+      if (outsideCard) {
+        if (outsideLabelOk) outsideCard.querySelector('strong').textContent = SITE_SETTINGS.shippingOutsideLabel;
+        if (outsideChargeOk) {
+          outsideCard.querySelector('div div').textContent = `চার্জ: ৳${toBnDigits(SITE_SETTINGS.shippingOutsideCharge)}`;
+          outsideCard.querySelector('input').value = SITE_SETTINGS.shippingOutsideCharge;
+          outsideCard.querySelector('input').setAttribute('onclick', `updateDelivery(${SITE_SETTINGS.shippingOutsideCharge}, 'labelOutside')`);
+        }
+      }
+      selectedDeliveryCharge = insideChargeOk ? Number(SITE_SETTINGS.shippingInsideCharge) : 80;
+
+      // Delivery info banner on the products grid
+      const bannerSpans = document.querySelectorAll('.delivery-info-banner span');
+      const insideLabelSafe = insideLabelOk ? SITE_SETTINGS.shippingInsideLabel : 'ময়মনসিংহ সদরের ভেতরে';
+      const insideChargeSafe = insideChargeOk ? SITE_SETTINGS.shippingInsideCharge : 80;
+      const outsideLabelSafe = outsideLabelOk ? SITE_SETTINGS.shippingOutsideLabel : 'ময়মনসিংহ সদরের বাইরে';
+      const outsideChargeSafe = outsideChargeOk ? SITE_SETTINGS.shippingOutsideCharge : 130;
+      if (bannerSpans[0]) bannerSpans[0].innerHTML = `<i class="fa-solid fa-truck-fast"></i> ${insideLabelSafe}: ৳${toBnDigits(insideChargeSafe)}`;
+      if (bannerSpans[1]) bannerSpans[1].innerHTML = `<i class="fa-solid fa-location-dot"></i> ${outsideLabelSafe}: ৳${toBnDigits(outsideChargeSafe)}`;
+    }
+
+    // Convert normal digits to Bengali digits for display
+    function toBnDigits(num) {
+      const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+      return String(num).replace(/[0-9]/g, d => bn[d]);
+    }
+
+    // Load products from products.json (edited via the /admin dashboard) and render cards
+    async function loadProducts() {
+      try {
+        const res = await fetch('products.json', { cache: 'no-store' });
+        PRODUCTS = await res.json();
+      } catch (e) {
+        PRODUCTS = [];
+      }
+      renderSubcategoryChips();
+      renderProductGrid();
+    }
+
+    // Shared card template — used by both the main grid and the wishlist view, so idx always
+    // refers to the REAL index in the full PRODUCTS array (fixes add-to-cart mismatches).
+    function buildProductCardHtml(p, idx) {
+      const id = 'p' + idx;
+      const soldOut = p.inStock === false;
+      const hasDiscount = p.originalPrice && Number(p.originalPrice) > Number(p.price);
+      const discountAmount = hasDiscount ? Number(p.originalPrice) - Number(p.price) : 0;
+
+      // Priority: out of stock > discount > best seller > new arrival > trending (only one badge shown, matches approved design)
+      let badgeHtml = '';
+      if (soldOut) badgeHtml = `<span class="product-badge stockout">স্টক নেই</span>`;
+      else if (hasDiscount) badgeHtml = `<span class="discount-badge">৳${toBnDigits(discountAmount)} ছাড়</span>`;
+      else if (p.bestSeller) badgeHtml = `<span class="product-badge bestseller">বেস্ট সেলার</span>`;
+      else if (p.newArrival) badgeHtml = `<span class="product-badge new">নতুন</span>`;
+      else if (p.trending) badgeHtml = `<span class="product-badge trending">ট্রেন্ডিং</span>`;
+
+      return `
+      <div class="product-card" id="card-${id}">
+        <div>
+          <div class="product-image-box">
+            ${badgeHtml}
+            <button class="wishlist-heart-btn" data-wishlist-idx="${idx}" onclick="event.stopPropagation(); toggleWishlist(${idx})">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="product.html?id=${idx}">
+              <img src="${p.image}" alt="${p.name}" onclick="event.preventDefault(); openLightbox('${p.image}')" />
+            </a>
+          </div>
+          <a href="product.html?id=${idx}" style="text-decoration:none; color:inherit;">
+            <h3 class="product-card-title">${p.name}</h3>
+          </a>
+          <p class="product-card-desc">${p.description || ''}</p>
+        </div>
+        <div>
+          <div class="price-box">
+            <span class="current-price">৳${toBnDigits(p.price)}</span>
+            ${hasDiscount ? `<span class="original-price">৳${toBnDigits(p.originalPrice)}</span>` : ''}
+          </div>
+          <div class="stock-status-note ${soldOut ? 'out' : 'ok'}">
+            <i class="fa-solid ${soldOut ? 'fa-circle-xmark' : 'fa-circle-check'}"></i> ${soldOut ? 'স্টক নেই' : 'স্টকে আছে'}
+          </div>
+          <div class="btn-action-group">
+            ${soldOut ? `
+              <button class="btn-add-cart" disabled style="opacity:0.6; cursor:not-allowed;">স্টক নেই</button>
+            ` : `
+              <button class="btn-add-cart" data-action="add" data-id="${id}">
+                <i class="fa-solid fa-cart-plus"></i> কার্ট-এ যোগ করুন
+              </button>
+              <button class="btn-buy-now" data-action="buy" data-id="${id}">
+                <i class="fa-solid fa-bolt"></i> এখনি অর্ডার করুন
+              </button>
+            `}
+          </div>
+        </div>
+      </div>`;
+    }
+
+    function wireCardButtons(grid) {
+      grid.querySelectorAll('button[data-action]').forEach(btn => {
+        const idx = parseInt(btn.dataset.id.replace('p', ''), 10);
+        const p = PRODUCTS[idx];
+        if (!p) return;
+        if (btn.dataset.action === 'add') {
+          btn.addEventListener('click', () => addToCart(btn.dataset.id, p.name, Number(p.price), p.image));
+        } else {
+          btn.addEventListener('click', () => buyNow(btn.dataset.id, p.name, Number(p.price), p.image));
+        }
+      });
+    }
+
+    // ===== Filters & Sort state =====
+    let activeFilters = {
+      subcategory: null,
+      priceMin: null,
+      priceMax: null,
+      inStockOnly: false,
+      featured: false,
+      bestSeller: false,
+      trending: false,
+      newArrival: false,
+      onSale: false
+    };
+    let activeSort = 'default';
+
+    function getFilteredSortedProducts() {
+      let list = PRODUCTS.map((p, idx) => ({ p, idx }));
+
+      // Category (from sidebar)
+      if (currentCategory !== 'all') {
+        list = list.filter(({ p }) => p.category === currentCategory);
+      }
+      // Subcategory (chip, only meaningful within a selected category)
+      if (activeFilters.subcategory) {
+        list = list.filter(({ p }) => p.subcategory === activeFilters.subcategory);
+      }
+      // Price range
+      if (activeFilters.priceMin !== null && !isNaN(activeFilters.priceMin)) {
+        list = list.filter(({ p }) => Number(p.price) >= activeFilters.priceMin);
+      }
+      if (activeFilters.priceMax !== null && !isNaN(activeFilters.priceMax)) {
+        list = list.filter(({ p }) => Number(p.price) <= activeFilters.priceMax);
+      }
+      // Availability
+      if (activeFilters.inStockOnly) {
+        list = list.filter(({ p }) => p.inStock !== false);
+      }
+      // Badge tags
+      if (activeFilters.featured) list = list.filter(({ p }) => p.featured === true);
+      if (activeFilters.bestSeller) list = list.filter(({ p }) => p.bestSeller === true);
+      if (activeFilters.trending) list = list.filter(({ p }) => p.trending === true);
+      if (activeFilters.newArrival) list = list.filter(({ p }) => p.newArrival === true);
+      if (activeFilters.onSale) list = list.filter(({ p }) => p.originalPrice && Number(p.originalPrice) > Number(p.price));
+
+      // Sorting. "Newest/Oldest" use the CMS "Date Added" field when present;
+      // if a product has no date set yet, we fall back to its position in products.json
+      // (items are typically appended at the end, so later position ≈ newer).
+      switch (activeSort) {
+        case 'newest':
+          list = list.slice().sort((a, b) => {
+            const da = a.p.dateAdded ? new Date(a.p.dateAdded).getTime() : a.idx;
+            const db = b.p.dateAdded ? new Date(b.p.dateAdded).getTime() : b.idx;
+            return db - da;
+          });
+          break;
+        case 'oldest':
+          list = list.slice().sort((a, b) => {
+            const da = a.p.dateAdded ? new Date(a.p.dateAdded).getTime() : a.idx;
+            const db = b.p.dateAdded ? new Date(b.p.dateAdded).getTime() : b.idx;
+            return da - db;
+          });
+          break;
+        case 'price-asc':
+          list = list.slice().sort((a, b) => Number(a.p.price) - Number(b.p.price));
+          break;
+        case 'price-desc':
+          list = list.slice().sort((a, b) => Number(b.p.price) - Number(a.p.price));
+          break;
+        case 'name-asc':
+          list = list.slice().sort((a, b) => a.p.name.localeCompare(b.p.name, 'bn'));
+          break;
+        default:
+          break; // keep original order
+      }
+
+      return list;
+    }
+
+    function setSortOption(value) {
+      activeSort = value;
+      renderProductGrid();
+    }
+
+    function syncFilterDrawerInputs() {
+      document.getElementById('filterPriceMin').value = activeFilters.priceMin ?? '';
+      document.getElementById('filterPriceMax').value = activeFilters.priceMax ?? '';
+      document.getElementById('filterInStockOnly').checked = activeFilters.inStockOnly;
+      document.getElementById('filterFeatured').checked = activeFilters.featured;
+      document.getElementById('filterBestSeller').checked = activeFilters.bestSeller;
+      document.getElementById('filterTrending').checked = activeFilters.trending;
+      document.getElementById('filterNewArrival').checked = activeFilters.newArrival;
+      document.getElementById('filterOnSale').checked = activeFilters.onSale;
+    }
+
+    function applyFiltersFromDrawer() {
+      const min = document.getElementById('filterPriceMin').value;
+      const max = document.getElementById('filterPriceMax').value;
+      activeFilters.priceMin = min === '' ? null : Number(min);
+      activeFilters.priceMax = max === '' ? null : Number(max);
+      activeFilters.inStockOnly = document.getElementById('filterInStockOnly').checked;
+      activeFilters.featured = document.getElementById('filterFeatured').checked;
+      activeFilters.bestSeller = document.getElementById('filterBestSeller').checked;
+      activeFilters.trending = document.getElementById('filterTrending').checked;
+      activeFilters.newArrival = document.getElementById('filterNewArrival').checked;
+      activeFilters.onSale = document.getElementById('filterOnSale').checked;
+      closeFilterDrawer();
+      renderProductGrid();
+    }
+
+    function clearAllFilters() {
+      activeFilters = { subcategory: null, priceMin: null, priceMax: null, inStockOnly: false, featured: false, bestSeller: false, trending: false, newArrival: false, onSale: false };
+      syncFilterDrawerInputs();
+      renderSubcategoryChips();
+      closeFilterDrawer();
+      renderProductGrid();
+    }
+
+    function removeOneFilter(key) {
+      if (key === 'price') { activeFilters.priceMin = null; activeFilters.priceMax = null; }
+      else if (key === 'subcategory') { activeFilters.subcategory = null; renderSubcategoryChips(); }
+      else activeFilters[key] = false;
+      renderProductGrid();
+    }
+
+    function countActiveFilters() {
+      let n = 0;
+      if (activeFilters.subcategory) n++;
+      if (activeFilters.priceMin !== null || activeFilters.priceMax !== null) n++;
+      if (activeFilters.inStockOnly) n++;
+      if (activeFilters.featured) n++;
+      if (activeFilters.bestSeller) n++;
+      if (activeFilters.trending) n++;
+      if (activeFilters.newArrival) n++;
+      if (activeFilters.onSale) n++;
+      return n;
+    }
+
+    function renderActiveFilterChips() {
+      const wrap = document.getElementById('activeFilterChips');
+      const chips = [];
+      const labels = { featured: 'ফিচার্ড', bestSeller: 'বেস্ট সেলার', trending: 'ট্রেন্ডিং', newArrival: 'নতুন এসেছে', onSale: 'ছাড়ে থাকা পণ্য' };
+
+      if (activeFilters.subcategory) chips.push(['subcategory', activeFilters.subcategory]);
+      if (activeFilters.priceMin !== null || activeFilters.priceMax !== null) {
+        const lo = activeFilters.priceMin !== null ? toBnDigits(activeFilters.priceMin) : '';
+        const hi = activeFilters.priceMax !== null ? toBnDigits(activeFilters.priceMax) : '';
+        chips.push(['price', `৳${lo}–৳${hi}`]);
+      }
+      if (activeFilters.inStockOnly) chips.push(['inStockOnly', 'স্টকে আছে']);
+      ['featured', 'bestSeller', 'trending', 'newArrival', 'onSale'].forEach(k => {
+        if (activeFilters[k]) chips.push([k, labels[k]]);
+      });
+
+      if (!chips.length) { wrap.innerHTML = ''; return; }
+
+      wrap.innerHTML = chips.map(([key, label]) => `
+        <span class="active-filter-chip">${label} <button onclick="removeOneFilter('${key}')"><i class="fa-solid fa-xmark"></i></button></span>
+      `).join('') + `<button class="clear-all-filters" onclick="clearAllFilters()">সব ফিল্টার মুছুন</button>`;
+    }
+
+    // Subcategory chips are derived from real product data for whichever category is selected
+    function renderSubcategoryChips() {
+      const wrap = document.getElementById('subcategoryChips');
+      if (currentCategory === 'all') { wrap.innerHTML = ''; return; }
+
+      const subcats = [...new Set(
+        PRODUCTS.filter(p => p.category === currentCategory && p.subcategory).map(p => p.subcategory)
+      )];
+
+      if (!subcats.length) { wrap.innerHTML = ''; return; }
+
+      wrap.innerHTML = subcats.map(sc => `
+        <button type="button" class="subcategory-chip ${activeFilters.subcategory === sc ? 'active' : ''}" onclick="selectSubcategory('${sc}')">${sc}</button>
+      `).join('');
+    }
+
+    function selectSubcategory(sc) {
+      activeFilters.subcategory = activeFilters.subcategory === sc ? null : sc;
+      renderSubcategoryChips();
+      renderProductGrid();
+    }
+
+    function renderProductGrid() {
+      const grid = document.getElementById('productGrid');
+
+      if (!PRODUCTS.length) {
+        grid.innerHTML = '<p style="text-align:center; color: var(--text-muted); grid-column: 1/-1;">এখনো কোনো পণ্য যোগ করা হয়নি।</p>';
+        document.getElementById('resultCount').textContent = '';
+        return;
+      }
+
+      const visible = getFilteredSortedProducts();
+
+      const countDot = document.getElementById('filterCountDot');
+      const activeCount = countActiveFilters();
+      countDot.style.display = activeCount > 0 ? 'flex' : 'none';
+      countDot.textContent = toBnDigits(activeCount);
+      renderActiveFilterChips();
+      document.getElementById('resultCount').textContent = `${toBnDigits(visible.length)}টি পণ্য পাওয়া গেছে`;
+
+      if (!visible.length) {
+        grid.innerHTML = '<p style="text-align:center; color: var(--text-muted); grid-column: 1/-1;">কোনো পণ্য এই ফিল্টারে পাওয়া যায়নি।</p>';
+        return;
+      }
+
+      grid.innerHTML = visible.map(({ p, idx }) => buildProductCardHtml(p, idx)).join('');
+
+      applyWishlistState();
+      wireCardButtons(grid);
+    }
+
+    function openSidebar() {
+      document.getElementById('categorySidebar').classList.add('active');
+      document.getElementById('sidebarOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+      document.getElementById('categorySidebar').classList.remove('active');
+      document.getElementById('sidebarOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function openFilterDrawer() {
+      syncFilterDrawerInputs();
+      document.getElementById('filterDrawer').classList.add('active');
+      document.getElementById('sidebarOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeFilterDrawer() {
+      document.getElementById('filterDrawer').classList.remove('active');
+      document.getElementById('sidebarOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function closeAllPanels() {
+      closeSidebar();
+      closeFilterDrawer();
+    }
+
+    function selectCategory(category) {
+      currentCategory = category;
+      activeFilters.subcategory = null;
+      document.querySelectorAll('.category-item').forEach(item => {
+        item.classList.toggle('active', item.dataset.category === category);
+      });
+      renderSubcategoryChips();
+      renderProductGrid();
+      closeSidebar();
+      document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Bangladesh Location Data
+    const locationData = {
+      Dhaka: {
+        Dhaka: ["Dhanmondi", "Gulshan", "Mirpur", "Uttara", "Mohammadpur", "Badda", "Savar", "Dhamrai", "Keraniganj", "Nawabganj", "Dohar"],
+        Gazipur: ["Gazipur Sadar", "Kaliakair", "Kaliganj", "Kapasia", "Sreepur"],
+        Narayanganj: ["Narayanganj Sadar", "Araihazar", "Bandar", "Roopganj", "Sonargaon", "Siddhirganj"],
+        Tangail: ["Tangail Sadar", "Basail", "Bhuapur", "Delduar", "Dhanbari", "Ghatail", "Gopalpur", "Kalihati", "Madhupur", "Mirzapur", "Nagarpur", "Sakhipur"],
+        Faridpur: ["Faridpur Sadar", "Alfadanga", "Bhanga", "Boalmari", "Charbhadrasan", "Sadarpur", "Nagarkanda", "Madhukhali", "Saltha"],
+        Manikganj: ["Manikganj Sadar", "Singair", "Shibalaya", "Saturia", "Harirampur", "Ghior", "Daulatpur"],
+        Munshiganj: ["Munshiganj Sadar", "Gazaria", "Tongibari", "Sirajdikhan", "Louhajang", "Sreenagar"],
+        Narsingdi: ["Narsingdi Sadar", "Belabo", "Monohardi", "Raipura", "Shibpur", "Palash"],
+        Gopalganj: ["Gopalganj Sadar", "Kashiani", "Kotalipara", "Muksudpur", "Tungipara"],
+        Madaripur: ["Madaripur Sadar", "Kalkini", "Rajoir", "Shibchar", "Dasar"],
+        Rajbari: ["Rajbari Sadar", "Baliakandi", "Goalandaghat", "Pangsha", "Kalukhali"],
+        Shariatpur: ["Shariatpur Sadar", "Zanjira", "Naria", "Damudya", "Bhedarganj", "Gosairhat"],
+        Kishoreganj: ["Kishoreganj Sadar", "Bhairab", "Bajitpur", "Hossainpur", "Itna", "Karimganj", "Katiadi", "Kuliarchar", "Mithamain", "Nikli", "Pakundia", "Tarail", "Ashtagram"]
+      },
+      Chattogram: {
+        Chattogram: ["Kotwali", "Panchlaish", "Halishahar", "Patenga", "Hathazari", "Sitakunda", "Mirsarai", "Patiya", "Anwara", "Boalkhali", "Banshkhali", "Chandanaish", "Fatikchhari", "Lohagara", "Raozan", "Rangunia", "Sandwip", "Karnaphuli"],
+        CoxsBazar: ["Coxs Bazar Sadar", "Chakaria", "Pekua", "Ramu", "Teknaf", "Ukhia", "Maheshkhali", "Kutubdia", "Eidgaon"],
+        Cumilla: ["Cumilla Sadar", "Cumilla Sadar Dakshin", "Barura", "Chandina", "Chauddagram", "Daudkandi", "Debidwar", "Homna", "Laksam", "Monohargonj", "Meghna", "Muradnagar", "Nangalkot", "Titas", "Burichang", "Brahmanpara"],
+        Feni: ["Feni Sadar", "Daganbhuiyan", "Chhagalnaiya", "Sonagazi", "Parshuram", "Fulgazi"],
+        Noakhali: ["Noakhali Sadar", "Begumganj", "Chatkhil", "Companiganj", "Hatiya", "Senbagh", "Subarnachar", "Sonaimuri", "Kabirhat"],
+        Brahmanbaria: ["Brahmanbaria Sadar", "Ashuganj", "Akhaura", "Bancharampur", "Kasba", "Nabinagar", "Nasirnagar", "Sarail", "Bijoynagar"],
+        Chandpur: ["Chandpur Sadar", "Faridganj", "Haimchar", "Hajiganj", "Kachua", "Matlab Dakshin", "Matlab Uttar", "Shahrasti"],
+        Lakshmipur: ["Lakshmipur Sadar", "Raipur", "Ramganj", "Ramgati", "Kamalnagar"],
+        Khagrachhari: ["Khagrachhari Sadar", "Dighinala", "Panchhari", "Mahalchhari", "Matiranga", "Guimara", "Manikchhari", "Ramgarh", "Laxmichhari"],
+        Rangamati: ["Rangamati Sadar", "Belaichhari", "Barkal", "Kawkhali", "Jurachhari", "Kaptai", "Langadu", "Naniarchar", "Rajasthali", "Baghaichhari"],
+        Bandarban: ["Bandarban Sadar", "Thanchi", "Lama", "Alikadam", "Naikhongchhari", "Rowangchhari", "Ruma"]
+      },
+      Rajshahi: {
+        Rajshahi: ["Boalia", "Rajpara", "Motihar", "Shah Makhdum", "Paba", "Godagari", "Tanore", "Mohanpur", "Bagmara", "Durgapur", "Puthia", "Charghat", "Bagha"],
+        Bogra: ["Bogra Sadar", "Shajahanpur", "Sherpur", "Dhunat", "Gabtali", "Kahaloo", "Nandigram", "Sariakandi", "Shibganj", "Sonatola", "Adamdighi"],
+        Pabna: ["Pabna Sadar", "Atgharia", "Bera", "Bhangura", "Chatmohar", "Faridpur", "Ishwardi", "Santhia", "Sujanagar"],
+        Naogaon: ["Naogaon Sadar", "Atrai", "Badalgachhi", "Dhamoirhat", "Manda", "Niamatpur", "Patnitala", "Porsha", "Raninagar", "Sapahar", "Mohadevpur"],
+        Natore: ["Natore Sadar", "Bagatipara", "Baraigram", "Gurudaspur", "Lalpur", "Singra", "Naldanga"],
+        Sirajganj: ["Sirajganj Sadar", "Belkuchi", "Chauhali", "Kamarkhanda", "Kazipur", "Rayganj", "Shahjadpur", "Tarash", "Ullahpara"],
+        ChapaiNawabganj: ["Chapainawabganj Sadar", "Gomastapur", "Jhinai", "Nachole", "Bholahat", "Shibganj"],
+        Joypurhat: ["Joypurhat Sadar", "Akkelpur", "Kalai", "Khetlal", "Panchbibi"]
+      },
+      Khulna: {
+        Khulna: ["Khulna Sadar", "Sonadanga", "Daulatpur", "Khalishpur", "Khan Jahan Ali", "Batiaghata", "Dacope", "Dumuria", "Dighalia", "Koyra", "Paikgachha", "Phultala", "Rupsha", "Terokhada"],
+        Jhenaidah: ["Jhenaidah Sadar", "Harinakunda", "Kaliganj", "Kotchandpur", "Maheshpur", "Shailkupa"],
+        Jessore: ["Jessore Sadar", "Abhaynagar", "Bagherpara", "Chaugachha", "Jhikargachha", "Keshabpur", "Manirampur", "Sharsha"],
+        Satkhira: ["Satkhira Sadar", "Assasuni", "Debhata", "Kalaroa", "Kaliganj", "Shyamnagar", "Tala"],
+        Bagerhat: ["Bagerhat Sadar", "Chitalmari", "Fakirhat", "Kachua", "Mollahat", "Mongla", "Morrelganj", "Rampal", "Sarankhola"],
+        Kushtia: ["Kushtia Sadar", "Kumarkhali", "Daulatpur", "Mirpur", "Bheramara", "Khoksa"],
+        Meherpur: ["Meherpur Sadar", "Gangni", "Mujibnagar"],
+        Narail: ["Narail Sadar", "Kalia", "Lohagara"],
+        Chuadanga: ["Chuadanga Sadar", "Alamdanga", "Damurhuda", "Jibannagar"],
+        Magura: ["Magura Sadar", "Mohammadpur", "Shalikha", "Sreepur"]
+      },
+      Barishal: {
+        Barishal: ["Barishal Sadar", "Agailjhara", "Babuganj", "Bakerganj", "Banaripara", "Gaurnadi", "Hizla", "Mehendiganj", "Muladi", "Wazirpur"],
+        Bhola: ["Bhola Sadar", "Burhanuddin", "Char Fasson", "Daulatkhan", "Lalmohan", "Manpura", "Tazumuddin"],
+        Patuakhali: ["Patuakhali Sadar", "Bauphal", "Dashmina", "Galachipa", "Kalapara", "Mirzaganj", "Rangabali", "Dumki"],
+        Pirojpur: ["Pirojpur Sadar", "Bhandaria", "Kawkhali", "Mathbaria", "Nazirpur", "Nesarabad", "Indurkani"],
+        Barguna: ["Barguna Sadar", "Amatali", "Bamna", "Betagi", "Patharghata", "Taltali"],
+        Jhalokathi: ["Jhalokathi Sadar", "Kathalia", "Nalchity", "Rajapur"]
+      },
+      Sylhet: {
+        Sylhet: ["Sylhet Sadar", "Beanibazar", "Bishwanath", "Companiganj", "Fenchuganj", "Golapganj", "Gowainghat", "Jaintiapur", "Kanaighat", "Zakiganj", "South Surma", "Osmani Nagar"],
+        Moulvibazar: ["Moulvibazar Sadar", "Barlekha", "Juri", "Kamalganj", "Kulaura", "Rajnagar", "Sreemangal"],
+        Habiganj: ["Habiganj Sadar", "Ajmiriganj", "Bahubal", "Baniachong", "Chhatak", "Chunarughat", "Lakhai", "Nabiganj", "Sayestaganj"],
+        Sunamganj: ["Sunamganj Sadar", "Bishwamambharpur", "Chhatak", "Derai", "Dharamapasha", "Dowarabazar", "Jagannathpur", "Jamalganj", "Sullah", "Tahirpur", "Shantiganj", "Madhyanagar"]
+      },
+      Rangpur: {
+        Rangpur: ["Rangpur Sadar", "Badarganj", "Gangachhara", "Kaunia", "Mithapukur", "Pirgachha", "Pirganj", "Taraganj"],
+        Dinajpur: ["Dinajpur Sadar", "Birampur", "Birganj", "Biral", "Bochaganj", "Chirirbandar", "Phulbari", "Ghoraghat", "Hakimpur", "Kaharole", "Khansama", "Nawabganj", "Parbatipur"],
+        Gaibandha: ["Gaibandha Sadar", "Phulchhari", "Gobindaganj", "Palashbari", "Sadullapur", "Sughatta", "Sundarganj"],
+        Kurigram: ["Kurigram Sadar", "Bhurungamari", "Char Rajibpur", "Chilmari", "Nageshwari", "Phulbari", "Rajarhat", "Raomari", "Ulipur"],
+        Nilphamari: ["Nilphamari Sadar", "Saidpur", "Jaldhaka", "Kishoreganj", "Domar", "Dimla"],
+        Panchagarh: ["Panchagarh Sadar", "Atwari", "Boda", "Debiganj", "Tetulia"],
+        Thakurgaon: ["Thakurgaon Sadar", "Pirganj", "Ranisankail", "Haripur", "Baliadangi"],
+        Lalmonirhat: ["Lalmonirhat Sadar", "Aditmari", "Hatibandha", "Kaliganj", "Patgram"]
+      },
+      Mymensingh: {
+        Mymensingh: ["Mymensingh Sadar", "Bhaluka", "Dhobaura", "Fulbaria", "Gafargaon", "Gauripur", "Haluaghat", "Ishwarganj", "Muktagachha", "Nandail", "Phulpur", "Trishal", "Tarakanda"],
+        Jamalpur: ["Jamalpur Sadar", "Baksiganj", "Dewanganj", "Islampur", "Madarganj", "Melandaha", "Sarishabari"],
+        Netrokona: ["Netrokona Sadar", "Atpara", "Barhatta", "Durgapur", "Kalmakanda", "Kendua", "Madan", "Mohanganj", "Purbadhala", "Khaliajuri"],
+        Sherpur: ["Sherpur Sadar", "Jhenaigati", "Nakla", "Nalitabari", "Sreebardi"]
+      }
+    };
+
+    function renderCart() {
+      const container = document.getElementById('cartItemsList');
+      const badgeCount = document.getElementById('cartBadgeCount');
+      
+      let totalQty = 0;
+      cart.forEach(item => totalQty += item.qty);
+      badgeCount.innerText = totalQty;
+
+      if (cart.length === 0) {
+        container.innerHTML = '<p style="text-align: center; color: var(--text-muted); padding: 10px;">আপনার কার্ট খালি রয়েছে। একটি পণ্য যোগ করুন।</p>';
+      } else {
+        container.innerHTML = cart.map(item => `
+          <div class="cart-item-row">
+            <div class="cart-item-info">
+              <img src="${item.image}" alt="${item.name}" />
+              <div>
+                <div class="cart-item-title">${item.name}</div>
+                <div class="cart-item-price">৳${item.price} × ${item.qty} = ৳${item.price * item.qty}</div>
+              </div>
+            </div>
+            <div class="qty-controls">
+              <button type="button" class="qty-btn" onclick="updateQty('${item.id}', -1)">-</button>
+              <span style="font-weight: bold; font-size: 14px;">${item.qty}</span>
+              <button type="button" class="qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
+              <button type="button" class="btn-remove" onclick="removeFromCart('${item.id}')"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      calculateTotal();
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    }
+
+    function addToCart(id, name, price, image) {
+      const existing = cart.find(i => i.id === id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id, name, price, image, qty: 1 });
+      }
+      renderCart();
+      showCartToast(`"${name}" কার্টে যোগ করা হয়েছে`);
+    }
+
+    function buyNow(id, name, price, image) {
+      const existing = cart.find(i => i.id === id);
+      if (!existing) {
+        cart.push({ id, name, price, image, qty: 1 });
+      }
+      renderCart();
+      scrollToOrderForm();
+    }
+
+    function showCartToast(msg) {
+      let toast = document.getElementById('cartToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'cartToast';
+        toast.className = 'cart-toast';
+        toast.innerHTML = '<i class="fa-solid fa-circle-check"></i><span id="cartToastMsg"></span>';
+        document.body.appendChild(toast);
+      }
+      document.getElementById('cartToastMsg').textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(window._cartToastTimer);
+      window._cartToastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function updateQty(id, change) {
+      const item = cart.find(i => i.id === id);
+      if (item) {
+        item.qty += change;
+        if (item.qty <= 0) {
+          removeFromCart(id);
+          return;
+        }
+      }
+      renderCart();
+    }
+
+    function removeFromCart(id) {
+      cart = cart.filter(i => i.id !== id);
+      renderCart();
+    }
+
+    function scrollToOrderForm() {
+      document.getElementById('order-form-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ===== Wishlist (stored in this browser only, via localStorage) =====
+    const WISHLIST_KEY = 'craftedCanopyWishlist';
+
+    function getWishlist() {
+      try {
+        return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveWishlist(list) {
+      localStorage.setItem(WISHLIST_KEY, JSON.stringify(list));
+      updateWishlistBadge();
+    }
+
+    function toggleWishlist(idx) {
+      let list = getWishlist();
+      if (list.includes(idx)) {
+        list = list.filter(i => i !== idx);
+      } else {
+        list.push(idx);
+      }
+      saveWishlist(list);
+      applyWishlistState();
+    }
+
+    function applyWishlistState() {
+      const list = getWishlist();
+      document.querySelectorAll('[data-wishlist-idx]').forEach(btn => {
+        const idx = parseInt(btn.dataset.wishlistIdx, 10);
+        const saved = list.includes(idx);
+        btn.classList.toggle('saved', saved);
+        btn.innerHTML = saved ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>';
+      });
+      updateWishlistBadge();
+    }
+
+    function updateWishlistBadge() {
+      const count = getWishlist().length;
+      const badge = document.getElementById('wishlistBadgeCount');
+      if (!badge) return;
+      badge.textContent = toBnDigits(count);
+      badge.style.display = count > 0 ? 'flex' : 'none';
+    }
+
+    function scrollToWishlistOrNotify() {
+      const list = getWishlist();
+      if (!list.length) {
+        alert('আপনার উইশলিস্ট এখনো খালি। পণ্যের উপরে ❤ আইকনে ট্যাপ করে যোগ করুন।');
+        return;
+      }
+      renderWishlistView(list);
+      document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Renders only the saved wishlist items in the main grid, using the REAL PRODUCTS index
+    // for every card so Add to Cart / Buy Now still work correctly. Does not touch PRODUCTS itself.
+    function renderWishlistView(ids) {
+      const grid = document.getElementById('productGrid');
+      const validIds = ids.filter(i => PRODUCTS[i]);
+
+      if (!validIds.length) {
+        grid.innerHTML = '<p style="text-align:center; color: var(--text-muted); grid-column: 1/-1;">কোনো পণ্য পাওয়া যায়নি।</p>';
+        return;
+      }
+
+      grid.innerHTML = validIds.map(idx => buildProductCardHtml(PRODUCTS[idx], idx)).join('');
+      applyWishlistState();
+      wireCardButtons(grid);
+    }
+
+    // ===== Search =====
+    let searchDebounceTimer = null;
+
+    function initSearch() {
+      const input = document.getElementById('searchInput');
+      const panel = document.getElementById('searchResultsPanel');
+      const clearBtn = document.getElementById('searchClearBtn');
+
+      input.addEventListener('input', () => {
+        clearBtn.classList.toggle('show', input.value.length > 0);
+        clearTimeout(searchDebounceTimer);
+        searchDebounceTimer = setTimeout(() => runSearch(input.value.trim()), 150);
+      });
+
+      input.addEventListener('focus', () => {
+        if (input.value.trim()) runSearch(input.value.trim());
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-bar-box')) panel.classList.remove('show');
+      });
+
+      renderPopularSearchChips();
+    }
+
+    // Popular searches — real category names + "on sale", not fabricated trending terms
+    function renderPopularSearchChips() {
+      const wrap = document.getElementById('popularSearchChips');
+      const chips = [
+        { label: 'জিপসাম', action: () => { selectCategory('gypsum'); } },
+        { label: 'রেজিন', action: () => { selectCategory('resin'); } },
+        { label: 'ক্যান্ডেল', action: () => { selectCategory('candle'); } },
+        { label: 'ছাড়ে থাকা পণ্য', action: () => {
+            currentCategory = 'all';
+            document.querySelectorAll('.category-item').forEach(item => item.classList.toggle('active', item.dataset.category === 'all'));
+            renderSubcategoryChips();
+            activeFilters.onSale = true;
+            renderProductGrid();
+            document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      ];
+      wrap.innerHTML = '<span class="label">জনপ্রিয়:</span>' + chips.map((c, i) => `
+        <button type="button" class="popular-chip" onclick="popularChipClick(${i})">${c.label}</button>
+      `).join('');
+      window._popularChipActions = chips.map(c => c.action);
+    }
+
+    function popularChipClick(i) {
+      if (window._popularChipActions && window._popularChipActions[i]) window._popularChipActions[i]();
+    }
+
+    function runSearch(query) {
+      const panel = document.getElementById('searchResultsPanel');
+      if (!query) { panel.classList.remove('show'); return; }
+
+      const q = query.toLowerCase();
+      const matches = PRODUCTS
+        .map((p, idx) => ({ p, idx }))
+        .filter(({ p }) => {
+          const haystack = [p.name, p.category, p.subcategory, p.description, p.tags]
+            .filter(Boolean).join(' ').toLowerCase();
+          return haystack.includes(q);
+        })
+        .slice(0, 8);
+
+      if (!matches.length) {
+        panel.innerHTML = '<div class="search-no-results">কোনো পণ্য পাওয়া যায়নি</div>';
+      } else {
+        panel.innerHTML = matches.map(({ p, idx }) => `
+          <a href="product.html?id=${idx}" class="search-result-item">
+            <img src="${p.image}" alt="${p.name}" />
+            <div>
+              <div class="sname">${p.name}</div>
+              <div class="sprice">৳${toBnDigits(p.price)}</div>
+            </div>
+          </a>
+        `).join('');
+      }
+      panel.classList.add('show');
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('searchInput');
+      input.value = '';
+      document.getElementById('searchClearBtn').classList.remove('show');
+      document.getElementById('searchResultsPanel').classList.remove('show');
+    }
+
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('imageLightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      // Only close if the click was on the overlay itself or the close button, not the image
+      if (e.target.id === 'imageLightbox' || e.target.closest('.image-lightbox-close')) {
+        document.getElementById('imageLightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // If arriving with #order-form-section (e.g. from homepage cart button), scroll there after products load
+    function scrollToHashIfPresent() {
+      if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) setTimeout(() => target.scrollIntoView({ behavior: 'smooth' }), 300);
+      }
+    }
+
+    function updateDelivery(charge, labelId) {
+      selectedDeliveryCharge = charge;
+      document.querySelectorAll('.radio-card').forEach(card => card.classList.remove('active'));
+      document.getElementById(labelId).classList.add('active');
+      calculateTotal();
+    }
+
+    function calculateTotal() {
+      let subtotal = 0;
+      cart.forEach(item => subtotal += item.price * item.qty);
+      const grandTotal = subtotal > 0 ? subtotal + selectedDeliveryCharge : 0;
+
+      document.getElementById('subtotalText').innerText = `৳${subtotal}`;
+      document.getElementById('deliveryText').innerText = `৳${selectedDeliveryCharge}`;
+      document.getElementById('totalText').innerText = `৳${grandTotal}`;
+    }
+
+    function loadDistricts() {
+      const divisionSelect = document.getElementById('division');
+      const districtSelect = document.getElementById('district');
+      const upazilaSelect = document.getElementById('upazila');
+
+      const selectedDivision = divisionSelect.value;
+      districtSelect.innerHTML = '<option value="" disabled selected>জেলা নির্বাচন করুন</option>';
+      upazilaSelect.innerHTML = '<option value="" disabled selected>প্রথমে জেলা নির্বাচন করুন</option>';
+      upazilaSelect.disabled = true;
+
+      if (selectedDivision && locationData[selectedDivision]) {
+        districtSelect.disabled = false;
+        Object.keys(locationData[selectedDivision]).forEach(district => {
+          const option = document.createElement('option');
+          option.value = district;
+          option.textContent = district;
+          districtSelect.appendChild(option);
+        });
+      }
+    }
+
+    function loadUpazilas() {
+      const divisionSelect = document.getElementById('division').value;
+      const districtSelect = document.getElementById('district').value;
+      const upazilaSelect = document.getElementById('upazila');
+
+      upazilaSelect.innerHTML = '<option value="" disabled selected>উপজেলা/থানা নির্বাচন করুন</option>';
+
+      if (divisionSelect && districtSelect && locationData[divisionSelect][districtSelect]) {
+        upazilaSelect.disabled = false;
+        locationData[divisionSelect][districtSelect].forEach(upazila => {
+          const option = document.createElement('option');
+          option.value = upazila;
+          option.textContent = upazila;
+          upazilaSelect.appendChild(option);
+        });
+      }
+    }
+
+    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (cart.length === 0) {
+        alert('আপনার কার্ট খালি! অন্তত ১টি পণ্য নির্বাচন করুন।');
+        return;
+      }
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerText = "প্রসেস করা হচ্ছে...";
+
+      const name = document.getElementById('fullName').value;
+      const phone = document.getElementById('phone').value;
+      
+      const division = document.getElementById('division').value;
+      const district = document.getElementById('district').value;
+      const upazila = document.getElementById('upazila').value;
+      const streetAddress = document.getElementById('address').value;
+      const fullAddress = `${streetAddress}, ${upazila}, ${district}, ${division}`;
+      
+      let subtotal = 0;
+      cart.forEach(item => subtotal += item.price * item.qty);
+      const grandTotal = subtotal + selectedDeliveryCharge;
+      const randomOrderId = '#TCC-' + Math.floor(1000 + Math.random() * 9000);
+      const currentDate = new Date().toLocaleDateString('bn-BD', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+
+      // HTML Layout for EmailJS Code Editor ({{{orderItemsHtml}}})
+      const orderItemsHtml = cart.map(item => `
+        <div style="display:flex; align-items:center; margin-bottom:12px; border-bottom:1px solid #eee; padding-bottom:8px;">
+          <img src="${item.image}" width="60" height="60" style="object-fit:cover; border-radius:8px; margin-right:12px;" />
+          <div>
+            <strong style="color:#2F5D50; font-size:14px;">${item.name}</strong><br/>
+            <span style="color:#6F6A60; font-size:13px;">পরিমাণ: ${item.qty} টি × ৳${item.price} = ৳${item.price * item.qty}</span>
+          </div>
+        </div>
+      `).join('');
+
+      // Dynamic variables passed to EmailJS
+      const templateParams = {
+        orderId: randomOrderId,
+        orderItemsHtml: orderItemsHtml,
+        fullName: name,
+        phone: phone,
+        address: streetAddress,
+        division: division,
+        district: district,
+        upazila: upazila,
+        deliveryCharge: selectedDeliveryCharge,
+        totalPrice: grandTotal
+      };
+
+      emailjs.send('service_7hhfzef', 'ehwclrp', templateParams)
+        .catch(function() {
+          return emailjs.send('service_7hhfzef', 'template_z824xo5', templateParams);
+        })
+        .then(function(response) {
+            console.log('Order email sent successfully!', response.status);
+        }, function(error) {
+            console.error('EmailJS error:', error);
+        })
+        .finally(function() {
+            // Populate Modal Poster
+            document.getElementById('resOrderId').innerText = randomOrderId;
+            document.getElementById('resName').innerText = name;
+            document.getElementById('resPhone').innerText = phone;
+            document.getElementById('resAddress').innerText = fullAddress;
+            document.getElementById('resDelivery').innerText = `৳${selectedDeliveryCharge}`;
+            document.getElementById('resTotal').innerText = `৳${grandTotal}`;
+            document.getElementById('posterDate').innerText = `তারিখ: ${currentDate}`;
+
+            // Render poster item list
+            const posterList = document.getElementById('posterItemsList');
+            posterList.innerHTML = cart.map(item => `
+              <div class="poster-item-row">
+                <span>${item.name} (x${item.qty})</span>
+                <strong>৳${item.price * item.qty}</strong>
+              </div>
+            `).join('');
+
+            document.getElementById('posterModal').classList.add('active');
+            
+            submitBtn.disabled = false;
+            submitBtn.innerText = "অর্ডার নিশ্চিত করুন (ক্যাশ অন ডেলিভারি)";
+        });
+    });
+
+    function closePosterModal() {
+      document.getElementById('posterModal').classList.remove('active');
+      document.getElementById('checkoutForm').reset();
+      
+      document.getElementById('district').innerHTML = '<option value="" disabled selected>প্রথমে বিভাগ নির্বাচন করুন</option>';
+      document.getElementById('district').disabled = true;
+      document.getElementById('upazila').innerHTML = '<option value="" disabled selected>প্রথমে জেলা নির্বাচন করুন</option>';
+      document.getElementById('upazila').disabled = true;
+
+      // Reset cart to empty
+      cart = [];
+      renderCart();
+      updateDelivery(SITE_SETTINGS.shippingInsideCharge, 'labelDhaka');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function downloadPoster() {
+      const posterElement = document.getElementById('poster-content');
+      html2canvas(posterElement, { scale: 2 }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'Order-Confirmation-TheCraftedCanopy.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('imageLightbox').classList.remove('active');
+        document.body.style.overflow = '';
+        closeAllPanels();
+      }
+    });
+
+    // Support arriving with ?category=gypsum/resin/candle (e.g. from the homepage category tiles)
+    function applyCategoryFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const cat = params.get('category');
+      if (cat && ['gypsum', 'resin', 'candle'].includes(cat)) {
+        currentCategory = cat;
+        document.querySelectorAll('.category-item').forEach(item => {
+          item.classList.toggle('active', item.dataset.category === cat);
+        });
+      }
+    }
+
+    // Support arriving with ?highlight=idx (e.g. from a trending product on the homepage):
+    // scrolls to that exact product and flashes a highlight outline around it.
+    function highlightProductFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const highlightIdx = params.get('highlight');
+      if (highlightIdx === null) return;
+      const card = document.getElementById('card-p' + highlightIdx);
+      if (!card) return;
+      setTimeout(() => {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        card.classList.add('highlighted');
+        setTimeout(() => card.classList.remove('highlighted'), 3200);
+      }, 350);
+    }
+
+    applyCategoryFromUrl();
+
+    // Initial render calls
+    loadSiteSettings();
+    renderCart();
+    loadProducts().then(highlightProductFromUrl);
+    scrollToHashIfPresent();
+    initSearch();
+    updateWishlistBadge();
+  </script>
+
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>

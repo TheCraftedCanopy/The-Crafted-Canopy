@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title id="pageTitle">পণ্যের বিবরণ | The Crafted Canopy</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-color: #FBF9F5; --card-bg: #FFFFFF; --primary-brown: #2F5D50; --forest-deep: #1F4038;
+    --accent-gold: #A97C50; --soft-beige: #E6EFE9; --text-dark: #1C1A17; --text-muted: #6F6A60;
+    --border-color: #E6E1D6; --whatsapp-color: #25D366;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Hind Siliguri','Inter',sans-serif; background: var(--bg-color); color: var(--text-dark); line-height: 1.6; padding-bottom: 60px; }
+  .brand-font { font-family: 'Fraunces', serif; }
+  img { max-width: 100%; display: block; }
+
+  header {
+    background: rgba(251,249,245,0.95); backdrop-filter: blur(10px);
+    position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border-color);
+    padding: 14px 20px; display: flex; align-items: center; gap: 14px;
+  }
+  .icon-btn {
+    background: none; border: none; font-size: 17px; color: var(--primary-brown);
+    cursor: pointer; padding: 8px; border-radius: 50%; position: relative;
+  }
+  .icon-btn:hover { background: var(--soft-beige); }
+  .site-logo { font-family: 'Fraunces', serif; font-weight: 700; font-size: 17px; color: var(--primary-brown); text-decoration: none; }
+  .site-logo span { color: var(--accent-gold); }
+  .header-spacer { flex: 1; }
+  .icon-badge {
+    position: absolute; top: 2px; right: 2px; background: var(--accent-gold); color: #fff;
+    font-size: 9px; font-weight: 700; width: 15px; height: 15px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif;
+  }
+
+  .breadcrumb {
+    max-width: 1100px; margin: 0 auto; padding: 16px 20px 0;
+    font-size: 12.5px; color: var(--text-muted); font-family: 'Inter', sans-serif;
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  }
+  .breadcrumb a { color: var(--text-muted); text-decoration: none; }
+  .breadcrumb .current { color: var(--primary-brown); font-weight: 600; }
+
+  .product-layout {
+    max-width: 1100px; margin: 0 auto;
+    padding: 18px 20px 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 46px;
+  }
+
+  .gallery-main {
+    position: relative; aspect-ratio: 1/1; border-radius: 18px; overflow: hidden;
+    background: var(--soft-beige); border: 1px solid var(--border-color);
+  }
+  .gallery-main img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; }
+  .gallery-badge {
+    position: absolute; top: 14px; left: 14px; background: #C0564F; color: #fff;
+    font-size: 11.5px; font-weight: 700; padding: 5px 13px; border-radius: 20px;
+    font-family: 'Inter', sans-serif; z-index: 2;
+  }
+  .gallery-thumbs { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+  .gallery-thumb {
+    width: 70px; height: 70px; border-radius: 10px; overflow: hidden;
+    border: 2px solid transparent; cursor: pointer; flex-shrink: 0; background: var(--soft-beige);
+  }
+  .gallery-thumb.active { border-color: var(--accent-gold); }
+  .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .gallery-ph {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+    width: 100%; height: 100%; color: var(--text-muted); background: repeating-linear-gradient(135deg, var(--soft-beige), var(--soft-beige) 10px, #DEE9E3 10px, #DEE9E3 20px);
+    font-size: 10px; text-align: center; padding: 6px; font-family: 'Inter', sans-serif;
+  }
+
+  .product-info-panel { padding-bottom: 40px; }
+  .cat-tag {
+    display: inline-block; font-size: 11.5px; font-weight: 700; color: var(--accent-gold);
+    text-transform: uppercase; letter-spacing: 0.6px; font-family: 'Inter', sans-serif; margin-bottom: 10px;
+  }
+  .product-title { font-size: 26px; color: var(--forest-deep); font-weight: 600; line-height: 1.35; margin-bottom: 14px; }
+
+  .price-block { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .price-now { font-size: 28px; font-weight: 700; color: var(--forest-deep); }
+  .price-old { font-size: 15px; color: var(--text-muted); text-decoration: line-through; }
+  .price-save { font-size: 12px; color: #C0564F; font-weight: 700; font-family: 'Inter', sans-serif; background: #FBEAE9; padding: 4px 10px; border-radius: 20px; }
+
+  .stock-row {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 18px;
+    font-size: 13.5px; font-weight: 600; color: var(--primary-brown); font-family: 'Inter', sans-serif;
+  }
+  .stock-row.out { color: #C0564F; }
+  .sku-row { font-size: 12px; color: var(--text-muted); font-family: 'Inter', sans-serif; margin-bottom: 22px; }
+
+  .qty-row { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .qty-label { font-size: 13.5px; font-weight: 600; }
+  .qty-control { display: flex; align-items: center; border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; background: var(--card-bg); }
+  .qty-control button { width: 38px; height: 38px; border: none; background: var(--soft-beige); color: var(--primary-brown); font-size: 16px; cursor: pointer; }
+  .qty-control span { width: 44px; text-align: center; font-weight: 700; font-size: 14px; }
+
+  .action-row { display: flex; gap: 12px; margin-bottom: 18px; }
+  .btn-add-cart, .btn-buy-now {
+    flex: 1; padding: 15px; border-radius: 28px; font-size: 14.5px; font-weight: 600;
+    font-family: 'Hind Siliguri', sans-serif; cursor: pointer; display: flex;
+    align-items: center; justify-content: center; gap: 8px; border: none; transition: transform 0.2s, background 0.2s;
+  }
+  .btn-add-cart { background: var(--soft-beige); color: var(--forest-deep); border: 1.5px solid var(--primary-brown); }
+  .btn-add-cart:hover { background: var(--primary-brown); color: #fff; }
+  .btn-buy-now { background: var(--primary-brown); color: #fff; box-shadow: 0 10px 22px rgba(47,93,80,0.25); }
+  .btn-buy-now:hover { background: var(--forest-deep); transform: translateY(-2px); }
+  .btn-add-cart:disabled, .btn-buy-now:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .secondary-row { display: flex; gap: 10px; margin-bottom: 26px; flex-wrap: wrap; }
+  .btn-secondary {
+    flex: 1; min-width: 100px; padding: 12px; border-radius: 24px; font-size: 12.5px; font-weight: 600;
+    font-family: 'Inter', sans-serif; cursor: pointer; display: flex; align-items: center;
+    justify-content: center; gap: 7px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-dark);
+  }
+  .btn-secondary:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+  .btn-secondary.saved { background: var(--accent-gold); color: #fff; border-color: var(--accent-gold); }
+
+  .accordion { border-top: 1px solid var(--border-color); }
+  .accordion-item { border-bottom: 1px solid var(--border-color); }
+  .accordion-head { display: flex; justify-content: space-between; align-items: center; padding: 15px 2px; cursor: pointer; font-weight: 600; font-size: 14px; }
+  .accordion-head i { color: var(--accent-gold); transition: transform 0.25s; font-size: 13px; }
+  .accordion-item.open .accordion-head i { transform: rotate(180deg); }
+  .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; font-size: 13px; color: var(--text-muted); line-height: 1.75; }
+  .accordion-item.open .accordion-body { max-height: 320px; padding-bottom: 16px; }
+  .spec-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 12.5px; }
+  .spec-row b { color: var(--text-dark); font-weight: 600; }
+
+  .section { max-width: 1100px; margin: 0 auto; padding: 50px 20px 0; }
+  .section-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
+  .eyebrow-sm { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--accent-gold); display: block; margin-bottom: 5px; }
+  .section-head h2 { font-size: 21px; color: var(--forest-deep); font-weight: 600; }
+
+  .rel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .rel-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit; transition: transform 0.25s, box-shadow 0.25s; }
+  .rel-card:hover { transform: translateY(-5px); box-shadow: 0 16px 30px rgba(47,93,80,0.12); }
+  .rel-img { aspect-ratio: 1/1; background: var(--soft-beige); overflow: hidden; }
+  .rel-img img { width: 100%; height: 100%; object-fit: cover; }
+  .rel-info { padding: 12px 13px 14px; }
+  .rel-info h4 { font-size: 13px; font-weight: 600; line-height: 1.4; margin-bottom: 6px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.8em; }
+  .rel-price { font-size: 14.5px; font-weight: 700; color: var(--forest-deep); }
+  .empty-note { color: var(--text-muted); font-size: 13px; grid-column: 1/-1; }
+
+  .whatsapp-float {
+    position: fixed; bottom: 22px; left: 22px; background: var(--whatsapp-color); color: #fff;
+    border-radius: 50px; box-shadow: 0 10px 25px rgba(0,0,0,0.25); z-index: 50;
+    display: flex; align-items: center; gap: 10px; padding: 13px 20px; text-decoration: none;
+    font-size: 13.5px; font-weight: 600; font-family: 'Inter', sans-serif;
+  }
+
+  .image-lightbox-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85); display: none; justify-content: center; align-items: center;
+    z-index: 400; padding: 20px; cursor: zoom-out;
+  }
+  .image-lightbox-overlay.active { display: flex; }
+  .image-lightbox-overlay img { max-width: 90vw; max-height: 90vh; object-fit: contain; border-radius: 12px; cursor: default; }
+  .image-lightbox-close {
+    position: absolute; top: 20px; right: 25px; color: #fff; font-size: 24px;
+    background: rgba(255,255,255,0.15); border: none; width: 40px; height: 40px;
+    border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--forest-deep); color: #fff; padding: 13px 22px; border-radius: 30px;
+    font-size: 13.5px; font-weight: 600; z-index: 300; opacity: 0; pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s; font-family: 'Hind Siliguri', sans-serif;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .not-found { max-width: 500px; margin: 80px auto; text-align: center; padding: 0 20px; }
+  .not-found i { font-size: 40px; color: var(--text-muted); margin-bottom: 16px; }
+  .not-found h2 { color: var(--forest-deep); margin-bottom: 10px; }
+  .not-found p { color: var(--text-muted); margin-bottom: 20px; }
+
+  @media (max-width: 700px) {
+    header { padding: 12px 16px; gap: 10px; }
+    .site-logo { font-size: 15px; flex: 1; text-align: center; }
+    .breadcrumb { padding: 12px 16px 0; font-size: 11px; }
+    .product-layout { grid-template-columns: 1fr; padding: 14px 16px 0; gap: 0; }
+    .gallery-thumb { width: 56px; height: 56px; }
+    .product-info-panel { padding-top: 20px; }
+    .product-title { font-size: 20px; }
+    .price-now { font-size: 23px; }
+    .action-row { position: sticky; bottom: 0; background: var(--bg-color); padding: 12px 0 4px; margin-bottom: 4px; }
+    .section { padding: 40px 16px 0; }
+    .section-head h2 { font-size: 18px; }
+    .rel-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .rel-info h4 { font-size: 12px; }
+    .whatsapp-float span { display: none; }
+    .whatsapp-float { padding: 14px; border-radius: 50%; }
+    .secondary-row { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <a href="products.html" class="icon-btn"><i class="fa-solid fa-arrow-left"></i></a>
+    <a href="index.html" class="site-logo">Crafted<span>Canopy</span></a>
+    <div class="header-spacer"></div>
+    <a href="products.html" class="icon-btn"><i class="fa-solid fa-basket-shopping"></i><span class="icon-badge" id="headerCartBadge" style="display:none;">0</span></a>
+  </header>
+
+  <div id="notFoundState" style="display:none;" class="not-found">
+    <i class="fa-solid fa-box-open"></i>
+    <h2 class="brand-font">পণ্যটি পাওয়া যায়নি</h2>
+    <p>এই পণ্যটি আর নেই অথবা লিংকটি সঠিক নয়।</p>
+    <a href="products.html" class="btn-buy-now" style="display:inline-flex; padding: 12px 28px;">সকল পণ্য দেখুন</a>
+  </div>
+
+  <div id="productContent" style="display:none;">
+    <div class="breadcrumb">
+      <a href="index.html">হোম</a> <i class="fa-solid fa-chevron-right" style="font-size:9px;"></i>
+      <a href="products.html" id="crumbCategory">সকল পণ্য</a> <i class="fa-solid fa-chevron-right" style="font-size:9px;"></i>
+      <span class="current" id="crumbName">…</span>
+    </div>
+
+    <div class="product-layout">
+      <div class="gallery-col">
+        <div class="gallery-main">
+          <span class="gallery-badge" id="galleryBadge" style="display:none;"></span>
+          <img id="mainGalleryImg" src="" alt="" />
+        </div>
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
+      </div>
+
+      <div class="product-info-panel">
+        <span class="cat-tag" id="prodCategory"></span>
+        <h1 class="product-title brand-font" id="prodName"></h1>
+
+        <div class="price-block">
+          <span class="price-now" id="prodPrice"></span>
+          <span class="price-old" id="prodOldPrice" style="display:none;"></span>
+          <span class="price-save" id="prodSave" style="display:none;"></span>
+        </div>
+
+        <div class="stock-row" id="prodStockRow"></div>
+        <div class="sku-row" id="prodSkuRow"></div>
+
+        <div class="qty-row" id="qtyRow">
+          <span class="qty-label">পরিমাণ</span>
+          <div class="qty-control">
+            <button id="qtyMinus" type="button">−</button>
+            <span id="qtyVal">১</span>
+            <button id="qtyPlus" type="button">+</button>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button class="btn-add-cart" id="addCartBtn"><i class="fa-solid fa-cart-plus"></i> কার্টে যোগ করুন</button>
+          <button class="btn-buy-now" id="buyNowBtn"><i class="fa-solid fa-bolt"></i> এখনি অর্ডার করুন</button>
+        </div>
+
+        <div class="secondary-row">
+          <button class="btn-secondary" id="wishlistToggle"><i class="fa-regular fa-heart"></i> উইশলিস্ট</button>
+          <button class="btn-secondary" id="shareBtn"><i class="fa-solid fa-share-nodes"></i> শেয়ার</button>
+          <button class="btn-secondary" id="copyLinkBtn"><i class="fa-solid fa-link"></i> লিংক কপি</button>
+        </div>
+
+        <div class="accordion" id="productAccordion"></div>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section-head">
+        <div><span class="eyebrow-sm">একই ধরনের</span><h2 class="brand-font">রিলেটেড পণ্য</h2></div>
+      </div>
+      <div class="rel-grid" id="relatedGrid"></div>
+    </section>
+  </div>
+
+  <a href="#" id="whatsappFloat" class="whatsapp-float" target="_blank" title="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i><span>হোয়াটসঅ্যাপ</span>
+  </a>
+
+  <div class="toast" id="toast"><i class="fa-solid fa-circle-check"></i><span id="toastMsg"></span></div>
+
+  <div class="image-lightbox-overlay" id="imageLightbox" onclick="closeLightbox(event)">
+    <button type="button" class="image-lightbox-close" onclick="closeLightbox(event)" aria-label="বন্ধ করুন"><i class="fa-solid fa-xmark"></i></button>
+    <img id="lightboxImg" src="" alt="Enlarged product image" />
+  </div>
+
+<script>
+  const CART_KEY = 'craftedCanopyCart';
+  const WISHLIST_KEY = 'craftedCanopyWishlist';
+  const CAT_LABELS = { gypsum: 'জিপসাম', resin: 'রেজিন', candle: 'ক্যান্ডেল' };
+
+  let PRODUCTS = [];
+  let currentProduct = null;
+  let currentIdx = null;
+  let qty = 1;
+
+  function toBn(n) {
+    const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+    return String(n).replace(/[0-9]/g, d => bn[d]);
+  }
+
+  function getCart() {
+    try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch (e) { return []; }
+  }
+  function saveCart(cart) {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    updateCartBadge();
+  }
+  function updateCartBadge() {
+    const cart = getCart();
+    const total = cart.reduce((s, i) => s + i.qty, 0);
+    const badge = document.getElementById('headerCartBadge');
+    badge.textContent = toBn(total);
+    badge.style.display = total > 0 ? 'flex' : 'none';
+  }
+
+  function getWishlist() {
+    try { return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || []; } catch (e) { return []; }
+  }
+  function saveWishlist(list) { localStorage.setItem(WISHLIST_KEY, JSON.stringify(list)); }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  function openLightbox(src) {
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('imageLightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e) {
+    if (e.target.id === 'imageLightbox' || e.target.closest('.image-lightbox-close')) {
+      document.getElementById('imageLightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { document.getElementById('imageLightbox').classList.remove('active'); document.body.style.overflow = ''; }
+  });
+
+  async function loadSiteSettings() {
+    const fallback = { whatsappInternational: '8801410355233', whatsappMessage: 'Hello The Crafted Canopy, I need some help with my order/product.', shippingInsideLabel: 'ময়মনসিংহ সদরের ভেতরে', shippingInsideCharge: 80, shippingOutsideLabel: 'ময়মনসিংহ সদরের বাইরে', shippingOutsideCharge: 130 };
+    let fetched = {};
+    try {
+      const res = await fetch('site-settings.json', { cache: 'no-store' });
+      fetched = await res.json();
+    } catch (e) { /* keep fallback */ }
+
+    // Only accept a fetched value if it's actually valid — an empty string or a wildly
+    // out-of-range number (e.g. a CMS typo) falls back to the safe default instead.
+    const settings = Object.assign({}, fallback);
+    if (typeof fetched.whatsappInternational === 'string' && fetched.whatsappInternational.trim()) settings.whatsappInternational = fetched.whatsappInternational;
+    if (typeof fetched.whatsappMessage === 'string' && fetched.whatsappMessage.trim()) settings.whatsappMessage = fetched.whatsappMessage;
+    if (typeof fetched.shippingInsideLabel === 'string' && fetched.shippingInsideLabel.trim()) settings.shippingInsideLabel = fetched.shippingInsideLabel;
+    if (typeof fetched.shippingOutsideLabel === 'string' && fetched.shippingOutsideLabel.trim()) settings.shippingOutsideLabel = fetched.shippingOutsideLabel;
+    if (fetched.shippingInsideCharge !== undefined && !isNaN(Number(fetched.shippingInsideCharge)) && Number(fetched.shippingInsideCharge) > 0 && Number(fetched.shippingInsideCharge) < 1000) settings.shippingInsideCharge = Number(fetched.shippingInsideCharge);
+    if (fetched.shippingOutsideCharge !== undefined && !isNaN(Number(fetched.shippingOutsideCharge)) && Number(fetched.shippingOutsideCharge) > 0 && Number(fetched.shippingOutsideCharge) < 1000) settings.shippingOutsideCharge = Number(fetched.shippingOutsideCharge);
+
+    const wa = document.getElementById('whatsappFloat');
+    if (wa) wa.href = `https://wa.me/${settings.whatsappInternational}?text=${encodeURIComponent(settings.whatsappMessage || '')}`;
+    return settings;
+  }
+
+  async function init() {
+    const settingsPromise = loadSiteSettings();
+    updateCartBadge();
+
+    let products = [];
+    try {
+      const res = await fetch('products.json', { cache: 'no-store' });
+      products = await res.json();
+    } catch (e) { products = []; }
+    PRODUCTS = products;
+
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'), 10);
+    const settings = await settingsPromise;
+
+    if (isNaN(id) || !PRODUCTS[id]) {
+      document.getElementById('notFoundState').style.display = 'block';
+      return;
+    }
+
+    currentIdx = id;
+    currentProduct = PRODUCTS[id];
+    renderProduct(currentProduct, id, settings);
+    document.getElementById('productContent').style.display = 'block';
+  }
+
+  function renderProduct(p, idx, settings) {
+    document.title = `${p.name} | The Crafted Canopy`;
+
+    document.getElementById('crumbCategory').textContent = CAT_LABELS[p.category] || 'সকল পণ্য';
+    document.getElementById('crumbCategory').href = `products.html?category=${p.category}`;
+    document.getElementById('crumbName').textContent = p.name;
+
+    document.getElementById('prodCategory').textContent = CAT_LABELS[p.category] || p.category;
+    document.getElementById('prodName').textContent = p.name;
+
+    const hasDiscount = p.originalPrice && Number(p.originalPrice) > Number(p.price);
+    document.getElementById('prodPrice').textContent = `৳${toBn(p.price)}`;
+    if (hasDiscount) {
+      const saved = Number(p.originalPrice) - Number(p.price);
+      document.getElementById('prodOldPrice').textContent = `৳${toBn(p.originalPrice)}`;
+      document.getElementById('prodOldPrice').style.display = 'inline';
+      document.getElementById('prodSave').textContent = `৳${toBn(saved)} সাশ্রয়`;
+      document.getElementById('prodSave').style.display = 'inline-block';
+      document.getElementById('galleryBadge').textContent = `৳${toBn(saved)} ছাড়`;
+      document.getElementById('galleryBadge').style.display = 'inline-block';
+    }
+
+    // Gallery — only real images. Main photo always shown; extra "gallery" photos from CMS shown if present.
+    document.getElementById('mainGalleryImg').src = p.image;
+    document.getElementById('mainGalleryImg').alt = p.name;
+    document.getElementById('mainGalleryImg').onclick = () => openLightbox(document.getElementById('mainGalleryImg').src);
+
+    const thumbs = document.getElementById('galleryThumbs');
+    const allImages = [p.image].concat((p.gallery || []).map(g => g.src || g).filter(Boolean));
+    if (allImages.length > 1) {
+      thumbs.innerHTML = allImages.map((src, i) => `
+        <div class="gallery-thumb ${i === 0 ? 'active' : ''}" data-img="${src}">
+          <img src="${src}" alt="thumbnail" />
+        </div>
+      `).join('');
+      thumbs.querySelectorAll('.gallery-thumb').forEach(t => {
+        t.addEventListener('click', () => {
+          document.getElementById('mainGalleryImg').src = t.dataset.img;
+          thumbs.querySelectorAll('.gallery-thumb').forEach(x => x.classList.remove('active'));
+          t.classList.add('active');
+        });
+      });
+    } else {
+      thumbs.innerHTML = '';
+    }
+
+    // Stock
+    const soldOut = p.inStock === false;
+    const stockRow = document.getElementById('prodStockRow');
+    stockRow.className = 'stock-row' + (soldOut ? ' out' : '');
+    stockRow.innerHTML = soldOut
+      ? '<i class="fa-solid fa-circle-xmark"></i> স্টক নেই'
+      : (p.stockQuantity ? `<i class="fa-solid fa-circle-check"></i> স্টকে আছে (${toBn(p.stockQuantity)}টি বাকি)` : '<i class="fa-solid fa-circle-check"></i> স্টকে আছে');
+
+    const skuParts = [];
+    if (p.sku) skuParts.push(`SKU: ${p.sku}`);
+    if (p.weight) skuParts.push(`ওজন: ${p.weight}`);
+    if (p.dimensions) skuParts.push(`মাপ: ${p.dimensions}`);
+    document.getElementById('prodSkuRow').textContent = skuParts.join(' | ');
+    document.getElementById('prodSkuRow').style.display = skuParts.length ? 'block' : 'none';
+
+    // Qty + actions
+    qty = 1;
+    document.getElementById('qtyVal').textContent = toBn(qty);
+    document.getElementById('qtyRow').style.display = soldOut ? 'none' : 'flex';
+    document.getElementById('addCartBtn').disabled = soldOut;
+    document.getElementById('buyNowBtn').disabled = soldOut;
+    if (soldOut) {
+      document.getElementById('addCartBtn').innerHTML = 'স্টক নেই';
+      document.getElementById('buyNowBtn').style.display = 'none';
+    }
+
+    // Accordion
+    const acc = document.getElementById('productAccordion');
+    const sections = [];
+    if (p.fullDescription || p.description) {
+      sections.push({ title: 'বিবরণ', body: `<p>${p.fullDescription || p.description}</p>`, open: true });
+    }
+    if (p.materials || p.dimensions || p.weight) {
+      let rows = '';
+      if (p.materials) rows += `<div class="spec-row"><span>উপাদান</span><b>${p.materials}</b></div>`;
+      if (p.dimensions) rows += `<div class="spec-row"><span>মাপ</span><b>${p.dimensions}</b></div>`;
+      if (p.weight) rows += `<div class="spec-row"><span>ওজন</span><b>${p.weight}</b></div>`;
+      sections.push({ title: 'উপাদান ও স্পেসিফিকেশন', body: rows });
+    }
+    sections.push({
+      title: 'শিপিং তথ্য',
+      body: `<p>${settings.shippingInsideLabel} ডেলিভারি চার্জ ৳${toBn(settings.shippingInsideCharge)}, ${settings.shippingOutsideLabel} ৳${toBn(settings.shippingOutsideCharge)}। সাধারণত ২-৪ কার্যদিবসের মধ্যে পৌঁছে যায়।</p>`
+    });
+    sections.push({
+      title: 'রিটার্ন পলিসি',
+      body: `<p>পণ্য হাতে পাওয়ার ২৪ ঘণ্টার মধ্যে ক্ষতিগ্রস্ত বা ভুল পণ্যের ক্ষেত্রে যোগাযোগ করুন, আমরা সমাধান করব।</p>`
+    });
+
+    acc.innerHTML = sections.map(s => `
+      <div class="accordion-item ${s.open ? 'open' : ''}">
+        <div class="accordion-head">${s.title} <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="accordion-body">${s.body}</div>
+      </div>
+    `).join('');
+    acc.querySelectorAll('.accordion-head').forEach(head => {
+      head.addEventListener('click', () => head.parentElement.classList.toggle('open'));
+    });
+
+    // Wishlist button state
+    const wishBtn = document.getElementById('wishlistToggle');
+    const saved = getWishlist().includes(idx);
+    setWishlistBtnState(wishBtn, saved);
+    wishBtn.onclick = () => {
+      let list = getWishlist();
+      if (list.includes(idx)) list = list.filter(i => i !== idx);
+      else list.push(idx);
+      saveWishlist(list);
+      setWishlistBtnState(wishBtn, list.includes(idx));
+      showToast(list.includes(idx) ? 'উইশলিস্টে যোগ হয়েছে' : 'উইশলিস্ট থেকে সরানো হয়েছে');
+    };
+
+    // Qty stepper
+    document.getElementById('qtyPlus').onclick = () => { qty++; document.getElementById('qtyVal').textContent = toBn(qty); };
+    document.getElementById('qtyMinus').onclick = () => { if (qty > 1) { qty--; document.getElementById('qtyVal').textContent = toBn(qty); } };
+
+    // Add to cart / Buy now — writes to the SAME localStorage cart that products.html reads
+    document.getElementById('addCartBtn').onclick = () => {
+      if (soldOut) return;
+      addToSharedCart(idx, p, qty);
+      showToast('কার্টে যোগ করা হয়েছে');
+    };
+    document.getElementById('buyNowBtn').onclick = () => {
+      if (soldOut) return;
+      addToSharedCart(idx, p, qty);
+      window.location.href = `products.html#order-form-section`;
+    };
+
+    // Share / copy link
+    document.getElementById('shareBtn').onclick = async () => {
+      const shareData = { title: p.name, text: p.name, url: window.location.href };
+      if (navigator.share) {
+        try { await navigator.share(shareData); } catch (e) { /* cancelled */ }
+      } else {
+        copyLink();
+      }
+    };
+    document.getElementById('copyLinkBtn').onclick = copyLink;
+
+    renderRelated(p, idx);
+  }
+
+  function setWishlistBtnState(btn, saved) {
+    btn.classList.toggle('saved', saved);
+    btn.innerHTML = saved ? '<i class="fa-solid fa-heart"></i> সেভড' : '<i class="fa-regular fa-heart"></i> উইশলিস্ট';
+  }
+
+  function addToSharedCart(idx, p, quantity) {
+    const cart = getCart();
+    const id = 'p' + idx;
+    const existing = cart.find(i => i.id === id);
+    if (existing) existing.qty += quantity;
+    else cart.push({ id, name: p.name, price: p.price, image: p.image, qty: quantity });
+    saveCart(cart);
+  }
+
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => showToast('লিংক কপি হয়েছে'));
+  }
+
+  function renderRelated(p, idx) {
+    const grid = document.getElementById('relatedGrid');
+    const related = PRODUCTS
+      .map((item, i) => ({ item, i }))
+      .filter(({ item, i }) => i !== idx && item.category === p.category)
+      .slice(0, 4);
+
+    if (!related.length) {
+      grid.innerHTML = '<p class="empty-note">এই ক্যাটাগরিতে আর কোনো পণ্য নেই।</p>';
+      return;
+    }
+
+    grid.innerHTML = related.map(({ item, i }) => `
+      <a href="product.html?id=${i}" class="rel-card">
+        <div class="rel-img"><img src="${item.image}" alt="${item.name}" /></div>
+        <div class="rel-info"><h4>${item.name}</h4><div class="rel-price">৳${toBn(item.price)}</div></div>
+      </a>
+    `).join('');
+  }
+
+  init();
+</script>
+</body>
+</html>

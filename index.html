@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Crafted Canopy | হাতে তৈরি ক্রাফট কালেকশন</title>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #FBF9F5;
+      --card-bg: #FFFFFF;
+      --primary-brown: #2F5D50;
+      --accent-gold: #A97C50;
+      --sage-green: #2F5D50;
+      --soft-beige: #E6EFE9;
+      --text-dark: #1C1A17;
+      --text-muted: #6F6A60;
+      --border-color: #E6E1D6;
+      --whatsapp-color: #25D366;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Hind Siliguri', 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    .brand-font { font-family: 'Fraunces', serif; }
+
+    header {
+      background-color: rgba(251, 248, 243, 0.95);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left { display: flex; align-items: center; gap: 14px; }
+
+    .hamburger-btn {
+      background: none;
+      border: none;
+      font-size: 22px;
+      color: var(--primary-brown);
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img { max-height: 72px; object-fit: contain; }
+
+    .logo-btn {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .header-cart-btn {
+      position: relative;
+      background: var(--soft-beige);
+      border: 1px solid var(--border-color);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--primary-brown);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .wishlist-icon-btn {
+      position: relative;
+      background: none;
+      border: none;
+      font-size: 19px;
+      color: var(--primary-brown);
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .wishlist-icon-btn:hover { background: var(--soft-beige); }
+
+    .icon-badge {
+      position: absolute;
+      top: 2px; right: 2px;
+      background: var(--accent-gold);
+      color: #fff;
+      font-size: 9.5px;
+      font-weight: 700;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Category sidebar (hamburger menu) */
+    .category-sidebar {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 260px;
+      height: 100%;
+      background: var(--bg-color);
+      z-index: 4000;
+      box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+      transition: left 0.3s ease;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .category-sidebar.active { left: 0; }
+
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .sidebar-header h3 { color: var(--primary-brown); font-size: 18px; }
+
+    .sidebar-close-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .category-item {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 14px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+      font-family: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      margin-bottom: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .category-item:hover { background: var(--soft-beige); }
+
+    .sidebar-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 3999;
+      display: none;
+    }
+
+    .sidebar-overlay.active { display: block; }
+
+    .search-row {
+      padding: 10px 20px 14px;
+      background: var(--bg-color);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 97px;
+      z-index: 99;
+    }
+    .search-bar-box { max-width: 1000px; margin: 0 auto; position: relative; }
+    .search-input-wrap {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--soft-beige); border: 1px solid var(--border-color);
+      border-radius: 24px; padding: 11px 16px;
+    }
+    .search-input-wrap:focus-within { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(169,124,80,0.15); }
+    .search-input-wrap i.fa-magnifying-glass { color: var(--muted); font-size: 14px; }
+    .search-input-wrap input {
+      border: none; background: transparent; outline: none;
+      font-family: 'Hind Siliguri', sans-serif; font-size: 14px; width: 100%; color: var(--ink);
+    }
+    .search-input-wrap input::placeholder { color: var(--muted); }
+    .search-clear-btn { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 13px; display: none; padding: 4px; }
+    .search-clear-btn.show { display: block; }
+
+    .popular-search-chips { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+    .popular-search-chips .label { font-size: 12px; color: var(--muted); flex-shrink: 0; }
+    .popular-chip {
+      background: var(--card); border: 1px solid var(--line); color: var(--forest);
+      font-size: 12px; font-weight: 600; padding: 5px 13px; border-radius: 16px; cursor: pointer; font-family: inherit;
+    }
+    .popular-chip:hover { border-color: var(--gold); background: var(--sage); }
+
+    .search-results-panel {
+      position: absolute; top: calc(100% + 8px); left: 0; right: 0;
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      box-shadow: 0 15px 35px rgba(60,42,33,0.15); max-height: 60vh; overflow-y: auto;
+      display: none; z-index: 150;
+    }
+    .search-results-panel.show { display: block; }
+    .search-result-item {
+      display: flex; align-items: center; gap: 12px; padding: 10px 14px;
+      text-decoration: none; color: inherit; border-bottom: 1px solid var(--line);
+    }
+    .search-result-item:last-child { border-bottom: none; }
+    .search-result-item:hover { background: var(--sage); }
+    .search-result-item img { width: 46px; height: 46px; border-radius: 8px; object-fit: cover; flex-shrink: 0; background: var(--sage); }
+    .search-result-item .sname { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+    .search-result-item .sprice { font-size: 12.5px; color: var(--forest); font-weight: 700; margin-top: 2px; }
+    .search-no-results { padding: 20px; text-align: center; color: var(--muted); font-size: 13.5px; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+    /* Hero banner */
+    .hero-banner {
+      margin-top: 20px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(120deg, var(--soft-beige), #F3EEE3);
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      align-items: center;
+      border: 1px solid var(--border-color);
+    }
+
+    .hero-banner-text { padding: 40px 35px; }
+
+    .hero-banner-text span.eyebrow {
+      display: inline-block;
+      background: var(--primary-brown);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 14px;
+    }
+
+    .hero-banner-text h1 {
+      color: var(--primary-brown);
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 14px;
+    }
+
+    .hero-banner-text p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 22px;
+      max-width: 380px;
+    }
+
+    .hero-banner-img {
+      height: 100%;
+      min-height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .btn-shop-now {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--primary-brown);
+      color: #fff;
+      border: none;
+      padding: 14px 30px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 10px 25px rgba(47, 93, 80, 0.2);
+    }
+
+    .btn-shop-now:hover { background: #254A40; transform: translateY(-2px); }
+
+    /* Category quick tiles */
+    .category-tiles-section { padding: 45px 0 10px; }
+
+    .section-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      color: var(--primary-brown);
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .see-all-link {
+      color: var(--accent-gold);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .category-tiles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .category-tile {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      height: 140px;
+      text-decoration: none;
+      display: flex;
+      align-items: flex-end;
+      border: 1px solid var(--border-color);
+    }
+
+    .category-tile img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .category-tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,26,23,0.75), rgba(28,26,23,0.05));
+    }
+
+    .category-tile-label {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      padding: 14px;
+    }
+
+    /* Trending products */
+    .trending-section { padding: 45px 0 10px; }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(60,42,33,0.1);
+    }
+
+    .product-image-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      background: var(--soft-beige);
+    }
+
+    .product-image-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .trending-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: var(--accent-gold);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      z-index: 1;
+    }
+
+    .discount-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #d9534f;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      z-index: 1;
+    }
+
+    .product-card-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+
+    .price-box { display: flex; align-items: baseline; gap: 8px; margin-top: 4px; }
+    .current-price { font-size: 16px; font-weight: 700; color: var(--primary-brown); }
+    .original-price { font-size: 13px; color: var(--text-muted); text-decoration: line-through; }
+
+    .trending-loading, .trending-empty {
+      text-align: center;
+      color: var(--text-muted);
+      grid-column: 1/-1;
+      padding: 20px 0;
+    }
+
+    /* Features */
+    .features-section { padding: 45px 0; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+
+    .feature-card i { font-size: 28px; color: var(--sage-green); margin-bottom: 10px; }
+    .feature-card h4 { color: var(--primary-brown); margin-bottom: 5px; }
+    .feature-card p { font-size: 13px; color: var(--text-muted); }
+
+    .cta-banner {
+      background: var(--soft-beige);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 35px 25px;
+      text-align: center;
+      margin: 20px 0 40px;
+    }
+
+    .cta-banner h3 { color: var(--primary-brown); font-size: 22px; margin-bottom: 10px; }
+    .cta-banner p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      background-color: var(--whatsapp-color);
+      color: #FFF;
+      border-radius: 50px;
+      text-align: center;
+      font-size: 24px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      text-decoration: none;
+      transition: transform 0.3s;
+    }
+
+    .whatsapp-float:hover { transform: scale(1.05); }
+    .whatsapp-float span { font-size: 14px; font-weight: 600; }
+
+    @media (max-width: 700px) {
+      .hero-banner { grid-template-columns: 1fr; }
+      .hero-banner-img { min-height: 200px; order: -1; }
+      .hero-banner-text h1 { font-size: 24px; }
+      .category-tiles-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .category-tile { height: 100px; }
+      .category-tile-label { font-size: 13px; padding: 10px; }
+      .features-grid { grid-template-columns: 1fr; }
+      .whatsapp-float span { display: none; }
+      .whatsapp-float { padding: 15px; border-radius: 50%; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <button type="button" class="hamburger-btn" onclick="openSidebar()" aria-label="ক্যাটাগরি মেনু">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="logo-container">
+        <a href="index.html" class="logo-btn" aria-label="হোমপেজে যান">
+          <img src="https://i.supaimg.com/90fa2840-ff7d-4425-a3a9-702953a58f4b/23147273-2e74-4eb4-af7c-a97489cf6d05.jpg" alt="The Crafted Canopy Logo" />
+        </a>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <a href="products.html" class="wishlist-icon-btn" aria-label="উইশলিস্ট">
+        <i class="fa-regular fa-heart"></i>
+        <span class="icon-badge" id="wishlistBadgeCount" style="display:none;">0</span>
+      </a>
+      <a href="products.html#order-form-section" class="header-cart-btn">
+        <i class="fa-solid fa-basket-shopping"></i> কার্ট
+        <span class="icon-badge" id="cartBadgeCount" style="display:none;">0</span>
+      </a>
+    </div>
+  </header>
+
+  <div class="search-row">
+    <div class="search-bar-box">
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="নাম, ক্যাটাগরি বা বিবরণ দিয়ে পণ্য খুঁজুন…" autocomplete="off" />
+        <button class="search-clear-btn" id="searchClearBtn" onclick="clearSearch()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="popular-search-chips" id="popularSearchChips"></div>
+      <div class="search-results-panel" id="searchResultsPanel"></div>
+    </div>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+  <div class="category-sidebar" id="categorySidebar">
+    <div class="sidebar-header">
+      <h3 class="brand-font">ক্যাটাগরি</h3>
+      <button type="button" class="sidebar-close-btn" onclick="closeSidebar()" aria-label="বন্ধ করুন">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+    <a href="products.html" class="category-item">সকল পণ্য</a>
+    <a href="products.html?category=gypsum" class="category-item">জিপসাম (Gypsum)</a>
+    <a href="products.html?category=resin" class="category-item">রেজিন (Resin)</a>
+    <a href="products.html?category=candle" class="category-item">ক্যান্ডেল (Candle)</a>
+  </div>
+
+  <div class="container">
+    <section class="hero-banner">
+      <div class="hero-banner-text">
+        <span class="eyebrow brand-font">নতুন কালেকশন</span>
+        <h1 class="brand-font">হাতে তৈরি নান্দনিক ক্রাফট, আপনার ঘরের জন্য</h1>
+        <p>প্রিমিয়াম কোয়ালিটির জিপসাম, রেজিন ও ক্যান্ডেল দিয়ে তৈরি ইউনিক ডেকোর পিস — সবকিছু সম্পূর্ণ হাতে তৈরি।</p>
+        <a href="products.html" class="btn-shop-now">
+          <i class="fa-solid fa-basket-shopping"></i> সকল পণ্য দেখুন
+        </a>
+      </div>
+      <img class="hero-banner-img" src="https://i.supaimg.com/90fa2840-ff7d-4425-a3a9-702953a58f4b/79b486b1-ef0b-4474-a102-92bf6ed0702f.jpg" alt="The Crafted Canopy Collection" />
+    </section>
+
+    <section class="category-tiles-section">
+      <div class="section-title-row">
+        <h2 class="section-title brand-font">ক্যাটাগরি অনুযায়ী কিনুন</h2>
+      </div>
+      <div class="category-tiles-grid">
+        <a href="products.html?category=gypsum" class="category-tile">
+          <img src="https://i.supaimg.com/90fa2840-ff7d-4425-a3a9-702953a58f4b/79b486b1-ef0b-4474-a102-92bf6ed0702f.jpg" alt="জিপসাম" />
+          <span class="category-tile-label">জিপসাম</span>
+        </a>
+        <a href="products.html?category=resin" class="category-tile">
+          <img src="https://i.supaimg.com/90fa2840-ff7d-4425-a3a9-702953a58f4b/05720e62-2b43-4905-8564-89a385dd5a33.png" alt="রেজিন" />
+          <span class="category-tile-label">রেজিন</span>
+        </a>
+        <a href="products.html?category=candle" class="category-tile">
+          <img src="https://i.supaimg.com/90fa2840-ff7d-4425-a3a9-702953a58f4b/79b486b1-ef0b-4474-a102-92bf6ed0702f.jpg" alt="ক্যান্ডেল" />
+          <span class="category-tile-label">ক্যান্ডেল</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="trending-section">
+      <div class="section-title-row">
+        <h2 class="section-title brand-font">🔥 ট্রেন্ডিং পণ্য</h2>
+        <a href="products.html" class="see-all-link">সব দেখুন <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="product-grid" id="trendingGrid">
+        <p class="trending-loading">পণ্য লোড হচ্ছে…</p>
+      </div>
+    </section>
+
+    <section class="features-section">
+      <h2 class="section-title brand-font" style="text-align:center; margin-bottom: 25px;">কেন আমাদের বেছে নেবেন</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <i class="fa-solid fa-gem"></i>
+          <h4>প্রিমিয়াম কোয়ালিটি</h4>
+          <p>উন্নতমানের জিপসাম উপাদান দিয়ে নিখুঁত ফিনিশিংয়ে তৈরি।</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <h4>মাল্টিপারপাস ব্যবহার</h4>
+          <p>জুয়েলারি অরগানাইজার, ক্যান্ডেল বেস বা ডেকোর পিস।</p>
+        </div>
+        <div class="feature-card">
+          <i class="fa-solid fa-hand-holding-heart"></i>
+          <h4>১০০% হ্যান্ডমেড</h4>
+          <p>সম্পূর্ণ হাতে তৈরি নান্দনিক ক্রাফট আইটেম।</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <h3 class="brand-font">আমাদের সম্পূর্ণ কালেকশন ঘুরে দেখুন</h3>
+      <p>দাম, ছাড় আর স্টক সহ সবকিছু একসাথে দেখুন এবং সরাসরি অর্ডার করুন।</p>
+      <a href="products.html" class="btn-shop-now">
+        <i class="fa-solid fa-arrow-right"></i> পণ্য দেখুন
+      </a>
+    </section>
+  </div>
+
+  <a href="#" id="whatsappFloat" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span>WhatsApp</span>
+  </a>
+
+  <script>
+    function openSidebar() {
+      document.getElementById('categorySidebar').classList.add('active');
+      document.getElementById('sidebarOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+      document.getElementById('categorySidebar').classList.remove('active');
+      document.getElementById('sidebarOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function toBnDigits(num) {
+      const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+      return String(num).replace(/[0-9]/g, d => bn[d]);
+    }
+
+    // Dynamically load trending products from products.json (managed via /admin)
+    async function loadTrendingProducts() {
+      const grid = document.getElementById('trendingGrid');
+      let products = [];
+      try {
+        const res = await fetch('products.json', { cache: 'no-store' });
+        products = await res.json();
+      } catch (e) {
+        products = [];
+      }
+
+      if (!products.length) {
+        grid.innerHTML = '<p class="trending-empty">এখনো কোনো পণ্য যোগ করা হয়নি।</p>';
+        return;
+      }
+
+      // Show products marked "trending" in the admin panel; if none are marked, fall back to the latest 4
+      let trending = products
+        .map((p, idx) => ({ p, idx }))
+        .filter(({ p }) => p.trending === true);
+
+      if (!trending.length) {
+        trending = products.map((p, idx) => ({ p, idx })).slice(-4).reverse();
+      }
+
+      grid.innerHTML = trending.map(({ p, idx }) => {
+        const hasDiscount = p.originalPrice && Number(p.originalPrice) > Number(p.price);
+        const soldOut = p.inStock === false;
+
+        let badgeHtml = '';
+        if (soldOut) badgeHtml = '<span class="trending-badge" style="background:#8B857A;">স্টক নেই</span>';
+        else if (hasDiscount) badgeHtml = '<span class="discount-badge">ছাড়</span>';
+        else if (p.bestSeller) badgeHtml = '<span class="trending-badge" style="background:var(--primary-brown);">বেস্ট সেলার</span>';
+        else if (p.newArrival) badgeHtml = '<span class="trending-badge" style="background:#4A7A6D;">নতুন</span>';
+        else badgeHtml = '<span class="trending-badge">ট্রেন্ডিং</span>';
+
+        return `
+        <div class="product-card" style="position:relative;">
+          <button class="wishlist-heart-btn" data-wishlist-idx="${idx}" onclick="toggleWishlistHome(${idx})" style="position:absolute; top:12px; right:12px; z-index:3; width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.9); border:none; display:flex; align-items:center; justify-content:center; color:var(--primary-brown); font-size:13px; cursor:pointer;">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+          <a href="product.html?id=${idx}" style="text-decoration:none; color:inherit; display:block;">
+            <div class="product-image-box">
+              ${badgeHtml}
+              <img src="${p.image}" alt="${p.name}" />
+            </div>
+            <div>
+              <h3 class="product-card-title">${p.name}</h3>
+              <div class="price-box">
+                <span class="current-price">৳${toBnDigits(p.price)}</span>
+                ${hasDiscount ? `<span class="original-price">৳${toBnDigits(p.originalPrice)}</span>` : ''}
+              </div>
+              ${soldOut ? '<p style="color:#C0564F; font-size:12px; margin-top:6px; font-weight:600;">স্টক নেই</p>' : ''}
+            </div>
+          </a>
+        </div>`;
+      }).join('');
+
+      applyHomeWishlistState();
+    }
+
+    // ===== Wishlist + cart badge counts (shared localStorage with products.html / product.html) =====
+    const WISHLIST_KEY = 'craftedCanopyWishlist';
+    const CART_KEY = 'craftedCanopyCart';
+
+    function getWishlistHome() {
+      try { return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || []; } catch (e) { return []; }
+    }
+
+    function toggleWishlistHome(idx) {
+      let list = getWishlistHome();
+      if (list.includes(idx)) list = list.filter(i => i !== idx);
+      else list.push(idx);
+      localStorage.setItem(WISHLIST_KEY, JSON.stringify(list));
+      applyHomeWishlistState();
+      updateHeaderBadges();
+    }
+
+    function applyHomeWishlistState() {
+      const list = getWishlistHome();
+      document.querySelectorAll('[data-wishlist-idx]').forEach(btn => {
+        const idx = parseInt(btn.dataset.wishlistIdx, 10);
+        const saved = list.includes(idx);
+        btn.innerHTML = saved ? '<i class="fa-solid fa-heart" style="color:var(--accent-gold);"></i>' : '<i class="fa-regular fa-heart"></i>';
+      });
+    }
+
+    function updateHeaderBadges() {
+      const wishCount = getWishlistHome().length;
+      const wishBadge = document.getElementById('wishlistBadgeCount');
+      if (wishBadge) {
+        wishBadge.textContent = toBnDigits(wishCount);
+        wishBadge.style.display = wishCount > 0 ? 'flex' : 'none';
+      }
+
+      let cart = [];
+      try { cart = JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch (e) { cart = []; }
+      const cartCount = cart.reduce((s, i) => s + i.qty, 0);
+      const cartBadge = document.getElementById('cartBadgeCount');
+      if (cartBadge) {
+        cartBadge.textContent = toBnDigits(cartCount);
+        cartBadge.style.display = cartCount > 0 ? 'flex' : 'none';
+      }
+    }
+
+    async function loadSiteSettings() {
+      const fallback = {
+        whatsappInternational: '8801410355233',
+        whatsappMessage: 'Hello The Crafted Canopy, I need some help with my order/product.'
+      };
+      let fetched = {};
+      try {
+        const res = await fetch('site-settings.json', { cache: 'no-store' });
+        fetched = await res.json();
+      } catch (e) { /* keep fallback */ }
+      const settings = Object.assign({}, fallback);
+      if (typeof fetched.whatsappInternational === 'string' && fetched.whatsappInternational.trim()) settings.whatsappInternational = fetched.whatsappInternational;
+      if (typeof fetched.whatsappMessage === 'string' && fetched.whatsappMessage.trim()) settings.whatsappMessage = fetched.whatsappMessage;
+      const waLink = document.getElementById('whatsappFloat');
+      if (waLink) waLink.href = `https://wa.me/${settings.whatsappInternational}?text=${encodeURIComponent(settings.whatsappMessage || '')}`;
+    }
+
+    // ===== Search (searches the full catalog, not just trending) =====
+    let ALL_PRODUCTS_FOR_SEARCH = [];
+    let searchDebounceTimer = null;
+
+    async function loadAllProductsForSearch() {
+      try {
+        const res = await fetch('products.json', { cache: 'no-store' });
+        ALL_PRODUCTS_FOR_SEARCH = await res.json();
+      } catch (e) {
+        ALL_PRODUCTS_FOR_SEARCH = [];
+      }
+    }
+
+    function initSearch() {
+      const input = document.getElementById('searchInput');
+      const panel = document.getElementById('searchResultsPanel');
+      const clearBtn = document.getElementById('searchClearBtn');
+
+      input.addEventListener('input', () => {
+        clearBtn.classList.toggle('show', input.value.length > 0);
+        clearTimeout(searchDebounceTimer);
+        searchDebounceTimer = setTimeout(() => runSearch(input.value.trim()), 150);
+      });
+
+      input.addEventListener('focus', () => {
+        if (input.value.trim()) runSearch(input.value.trim());
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-bar-box')) panel.classList.remove('show');
+      });
+
+      renderPopularSearchChips();
+    }
+
+    function runSearch(query) {
+      const panel = document.getElementById('searchResultsPanel');
+      if (!query) { panel.classList.remove('show'); return; }
+
+      const q = query.toLowerCase();
+      const matches = ALL_PRODUCTS_FOR_SEARCH
+        .map((p, idx) => ({ p, idx }))
+        .filter(({ p }) => {
+          const haystack = [p.name, p.category, p.subcategory, p.description, p.tags].filter(Boolean).join(' ').toLowerCase();
+          return haystack.includes(q);
+        })
+        .slice(0, 8);
+
+      if (!matches.length) {
+        panel.innerHTML = '<div class="search-no-results">কোনো পণ্য পাওয়া যায়নি</div>';
+      } else {
+        panel.innerHTML = matches.map(({ p, idx }) => `
+          <a href="product.html?id=${idx}" class="search-result-item">
+            <img src="${p.image}" alt="${p.name}" />
+            <div><div class="sname">${p.name}</div><div class="sprice">৳${toBnDigits(p.price)}</div></div>
+          </a>
+        `).join('');
+      }
+      panel.classList.add('show');
+    }
+
+    function clearSearch() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('searchClearBtn').classList.remove('show');
+      document.getElementById('searchResultsPanel').classList.remove('show');
+    }
+
+    function renderPopularSearchChips() {
+      const wrap = document.getElementById('popularSearchChips');
+      wrap.innerHTML = `
+        <span class="label">জনপ্রিয়:</span>
+        <a href="products.html?category=gypsum" class="popular-chip" style="text-decoration:none; display:inline-block;">জিপসাম</a>
+        <a href="products.html?category=resin" class="popular-chip" style="text-decoration:none; display:inline-block;">রেজিন</a>
+        <a href="products.html?category=candle" class="popular-chip" style="text-decoration:none; display:inline-block;">ক্যান্ডেল</a>
+      `;
+    }
+
+    loadAllProductsForSearch();
+    initSearch();
+    loadSiteSettings();
+    loadTrendingProducts();
+    updateHeaderBadges();
+
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
